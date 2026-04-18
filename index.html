@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>goblynz den — rarity + forge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="https://goblynz.xyz" target="_blank" class="nav-logo">
+      <span class="logo-glyph">&#x25C6;</span> goblynz den
+    </a>
+    <div class="nav-links">
+      <a href="#rarity" class="nav-link" data-tab="rarity">rarity checker</a>
+      <a href="#forge" class="nav-link" data-tab="forge">wl forge</a>
+    </div>
+    <a href="https://goblynz.xyz/mint.html" target="_blank" class="nav-cta">mint april 25 →</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-eyebrow">community tools · unofficial fan build</div>
+    <h1 class="hero-title">the den</h1>
+    <p class="hero-sub">rarity. whitelist. built for misfits.</p>
+    <div class="hero-tags">
+      <span class="tag">4,800 goblynz</span>
+      <span class="tag">ethereum ⟠</span>
+      <span class="tag">free mint</span>
+      <span class="tag">13 hidden 1/1s</span>
+    </div>
+  </header>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="rarity">
+      <span class="tab-icon">&#x25B2;</span>
+      rarity checker
+      <span class="tab-desc">analyze your goblynz traits</span>
+    </button>
+    <button class="tab-btn" data-tab="forge">
+      <span class="tab-icon">&#x2692;</span>
+      wl forge
+      <span class="tab-desc">manage allowlists like a pro</span>
+    </button>
+  </div>
+
+  <!-- ─────────────────────────────────────────
+       TAB 1: RARITY CHECKER
+  ───────────────────────────────────────── -->
+  <section id="rarity" class="tab-panel active">
+
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">rarity checker</h2>
+        <p class="section-sub">paste your token id or enter traits manually to see how rare your goblynz is</p>
+      </div>
+      <div class="rarity-legend">
+        <span class="badge legendary">legendary</span>
+        <span class="badge epic">epic</span>
+        <span class="badge rare">rare</span>
+        <span class="badge uncommon">uncommon</span>
+        <span class="badge common">common</span>
+      </div>
+    </div>
+
+    <!-- Token ID Lookup -->
+    <div class="card lookup-card">
+      <div class="card-label">token lookup</div>
+      <div class="lookup-row">
+        <input type="number" id="token-id-input" class="text-input" placeholder="enter token id  e.g. 0420" min="1" max="4800" />
+        <button class="btn-primary" id="lookup-btn">analyze ↗</button>
+        <button class="btn-ghost" id="random-btn">random goblynz</button>
+      </div>
+      <p class="lookup-hint">* uses simulated trait data until the contract is revealed. real metadata will auto-load post-reveal.</p>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="results-grid" id="results-panel" style="display:none;">
+
+      <!-- Goblyn Card -->
+      <div class="goblyn-card">
+        <div class="goblyn-art" id="goblyn-art">
+          <div class="goblyn-placeholder" id="goblyn-placeholder">
+            <div class="goblyn-glyph">&#x25C6;</div>
+            <div class="goblyn-id" id="goblyn-id-display">#????</div>
+          </div>
+        </div>
+        <div class="goblyn-meta">
+          <div class="goblyn-name" id="goblyn-name">goblynz <span id="goblyn-id">#????</span></div>
+          <div class="rarity-score-wrap">
+            <div class="rarity-score-label">rarity score</div>
+            <div class="rarity-score-value" id="rarity-score">—</div>
+          </div>
+          <div class="rarity-rank-wrap">
+            <div class="rank-item">
+              <span class="rank-label">rank</span>
+              <span class="rank-value" id="rarity-rank">—</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">top</span>
+              <span class="rank-value" id="rarity-percentile">—</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">tier</span>
+              <span class="rank-value" id="rarity-tier">—</span>
+            </div>
+          </div>
+          <div class="rarity-bar-wrap">
+            <div class="rarity-bar-track">
+              <div class="rarity-bar-fill" id="rarity-bar"></div>
+            </div>
+          </div>
+          <button class="btn-share" id="share-btn">copy share card ↗</button>
+        </div>
+      </div>
+
+      <!-- Traits Panel -->
+      <div class="traits-panel">
+        <div class="traits-header">
+          <h3 class="traits-title">trait breakdown</h3>
+          <span class="traits-count" id="trait-count">— traits</span>
+        </div>
+        <div class="traits-list" id="traits-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Collection Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">total supply</div>
+        <div class="stat-value">4,800</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">hidden 1/1s</div>
+        <div class="stat-value">13</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">trait categories</div>
+        <div class="stat-value">8</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">mint price</div>
+        <div class="stat-value">free</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">storage</div>
+        <div class="stat-value">arweave</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">chain</div>
+        <div class="stat-value">ethereum</div>
+      </div>
+    </div>
+
+    <!-- Rarity Distribution Chart -->
+    <div class="card chart-card">
+      <div class="card-label">rarity distribution</div>
+      <div class="chart-wrap">
+        <div class="chart-bars" id="rarity-chart">
+          <!-- populated by JS -->
+        </div>
+        <div class="chart-axis">
+          <span>legendary</span><span>epic</span><span>rare</span><span>uncommon</span><span>common</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────
+       TAB 2: WL FORGE
+  ───────────────────────────────────────── -->
+  <section id="forge" class="tab-panel">
+
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">wl forge</h2>
+        <p class="section-sub">allowlist manager for nft projects · phases · dedup · export</p>
+      </div>
+      <div class="forge-actions">
+        <button class="btn-ghost" id="clear-all-btn">clear all</button>
+        <button class="btn-primary" id="export-btn">export csv ↗</button>
+      </div>
+    </div>
+
+    <!-- Phase Manager -->
+    <div class="phases-row">
+      <div class="phase-card active-phase" data-phase="community_gtd">
+        <div class="phase-dot" style="background:#c8a84b"></div>
+        <div class="phase-info">
+          <div class="phase-name">community gtd</div>
+          <div class="phase-count" id="count-community_gtd">0 wallets</div>
+        </div>
+        <div class="phase-cap">cap: 1,000</div>
+      </div>
+      <div class="phase-card" data-phase="wl_collections">
+        <div class="phase-dot" style="background:#7a5c9b"></div>
+        <div class="phase-info">
+          <div class="phase-name">wl collections</div>
+          <div class="phase-count" id="count-wl_collections">0 wallets</div>
+        </div>
+        <div class="phase-cap">cap: 300</div>
+      </div>
+      <div class="phase-card" data-phase="collab_gtd">
+        <div class="phase-dot" style="background:#4a7c3f"></div>
+        <div class="phase-info">
+          <div class="phase-name">collab gtd</div>
+          <div class="phase-count" id="count-collab_gtd">0 wallets</div>
+        </div>
+        <div class="phase-cap">cap: 2,100</div>
+      </div>
+      <div class="phase-card" data-phase="fcfs">
+        <div class="phase-dot" style="background:#8b3a2e"></div>
+        <div class="phase-info">
+          <div class="phase-name">fcfs</div>
+          <div class="phase-count" id="count-fcfs">0 wallets</div>
+        </div>
+        <div class="phase-cap">cap: 410</div>
+      </div>
+    </div>
+
+    <!-- Add Wallets -->
+    <div class="card forge-input-card">
+      <div class="forge-input-header">
+        <div class="card-label">add wallets</div>
+        <div class="phase-selector-wrap">
+          <label class="input-label" for="phase-select">phase</label>
+          <select id="phase-select" class="select-input">
+            <option value="community_gtd">community gtd</option>
+            <option value="wl_collections">wl collections</option>
+            <option value="collab_gtd">collab gtd</option>
+            <option value="fcfs">fcfs</option>
+          </select>
+        </div>
+      </div>
+      <textarea
+        id="wallet-input"
+        class="wallet-textarea"
+        placeholder="paste wallet addresses here, one per line or comma-separated&#10;&#10;0x1234...abcd&#10;0x5678...efgh&#10;&#10;duplicates are automatically removed"
+        rows="6"
+      ></textarea>
+      <div class="forge-input-footer">
+        <div class="input-hint" id="wallet-parse-hint">paste addresses above to begin</div>
+        <div class="forge-btns">
+          <button class="btn-ghost" id="parse-preview-btn">preview</button>
+          <button class="btn-primary" id="add-wallets-btn">add to phase ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview / Duplicate Report -->
+    <div class="card dupe-card" id="dupe-card" style="display:none;">
+      <div class="card-label">parse report</div>
+      <div class="dupe-stats">
+        <div class="dupe-stat">
+          <span class="dupe-num" id="dupe-total">0</span>
+          <span class="dupe-label">pasted</span>
+        </div>
+        <div class="dupe-stat">
+          <span class="dupe-num green" id="dupe-new">0</span>
+          <span class="dupe-label">new unique</span>
+        </div>
+        <div class="dupe-stat">
+          <span class="dupe-num amber" id="dupe-dupe">0</span>
+          <span class="dupe-label">duplicates</span>
+        </div>
+        <div class="dupe-stat">
+          <span class="dupe-num red" id="dupe-invalid">0</span>
+          <span class="dupe-label">invalid</span>
+        </div>
+      </div>
+      <div class="dupe-list" id="dupe-list"></div>
+    </div>
+
+    <!-- Wallet Table -->
+    <div class="card table-card">
+      <div class="table-header">
+        <div class="card-label">allowlist</div>
+        <div class="table-controls">
+          <input type="text" id="search-input" class="text-input search-input" placeholder="search address..." />
+          <select id="filter-phase" class="select-input">
+            <option value="all">all phases</option>
+            <option value="community_gtd">community gtd</option>
+            <option value="wl_collections">wl collections</option>
+            <option value="collab_gtd">collab gtd</option>
+            <option value="fcfs">fcfs</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="wl-table" id="wl-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>wallet address</th>
+              <th>phase</th>
+              <th>added</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody id="wl-tbody">
+            <tr class="empty-row">
+              <td colspan="5">no wallets yet · add some above</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span id="table-count">0 wallets total</span>
+        <span id="table-showing">showing 0</span>
+      </div>
+    </div>
+
+    <!-- Capacity Overview -->
+    <div class="card capacity-card">
+      <div class="card-label">phase capacity</div>
+      <div class="capacity-bars" id="capacity-bars">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">&#x25C6; goblynz den · unofficial community tool</div>
+      <div class="footer-links">
+        <a href="https://goblynz.xyz" target="_blank">goblynz.xyz</a>
+        <a href="https://x.com/goblynznft" target="_blank">x / twitter</a>
+        <a href="https://discord.gg/goblynz" target="_blank">discord</a>
+        <a href="https://opensea.io/collection/goblynz" target="_blank">opensea</a>
+      </div>
+      <div class="footer-note">be weird. normal is crowded.</div>
+    </div>
+  </footer>
+
+  <script src="js/traits.js"></script>
+  <script src="js/rarity.js"></script>
+  <script src="js/forge.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
