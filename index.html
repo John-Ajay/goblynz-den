@@ -1,356 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>goblynz den — rarity + forge</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>goblynz den — rarity + forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0b09;--surface:#131109;--card:#1a1710;--card2:#201c12;
+  --border:#2a261a;--border2:#3a3526;
+  --accent:#c8a84b;--accent2:#8a6e2a;--accent3:#f0cc70;
+  --muted:#6b6047;--text:#e4d9bf;--text2:#a0916e;--text3:#6b6047;
+  --green:#5a9e4a;--green-bg:#1a2e14;
+  --amber:#c8903b;--amber-bg:#2a1e0c;
+  --red:#b04040;--red-bg:#2a1010;
+  --purple:#9b6bc4;--purple-bg:#1e1430;
+  --legendary:#f0cc70;--epic:#c07aff;--rare:#5aacff;--uncommon:#5adf8a;--common:#a0916e;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;
+  --r:4px;--rm:8px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:50}
+.nav-logo{font-family:var(--fd);font-weight:800;font-size:16px;color:var(--accent);text-decoration:none;letter-spacing:-0.02em;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.nav-link{padding:6px 16px;text-decoration:none;color:var(--text2);font-size:11px;letter-spacing:0.04em;transition:background .15s,color .15s;border-right:1px solid var(--border)}
+.nav-link:last-child{border-right:none}
+.nav-link:hover,.nav-link.active-link{background:var(--card2);color:var(--accent)}
+.nav-cta{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--bg);background:var(--accent);padding:7px 16px;border-radius:var(--r);text-decoration:none;transition:background .15s}
+.nav-cta:hover{background:var(--accent3)}
+
+/* HERO */
+.hero{text-align:center;padding:5rem 2rem 3rem;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,168,75,.06) 0%,transparent 70%)}
+.hero-eyebrow{font-size:10px;letter-spacing:.14em;color:var(--muted);margin-bottom:1.5rem}
+.hero-title{font-family:var(--fd);font-weight:900;font-size:clamp(60px,12vw,120px);color:var(--text);letter-spacing:-.04em;line-height:.9;margin-bottom:1.2rem}
+.hero-sub{font-size:13px;color:var(--text2);letter-spacing:.06em;margin-bottom:2rem}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.tag{font-size:10px;letter-spacing:.08em;padding:4px 10px;border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);background:var(--card)}
+
+/* TAB BAR */
+.tab-bar{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);background:var(--surface)}
+.tab-btn{display:flex;align-items:center;gap:12px;padding:1.2rem 2rem;background:none;border:none;border-right:1px solid var(--border);color:var(--text2);cursor:pointer;text-align:left;transition:background .15s,color .15s;font-family:var(--fm)}
+.tab-btn:last-child{border-right:none}
+.tab-btn:hover{background:var(--card);color:var(--text)}
+.tab-btn.active{background:var(--card);color:var(--accent);border-bottom:2px solid var(--accent)}
+.tab-icon{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border2);border-radius:var(--r);flex-shrink:0}
+.tab-btn.active .tab-icon{background:rgba(200,168,75,.1);border-color:var(--accent2);color:var(--accent)}
+.tab-name{font-family:var(--fd);font-weight:700;font-size:14px}
+.tab-desc{font-size:10px;color:var(--muted);display:block;margin-top:1px}
+.tab-btn.active .tab-desc{color:var(--accent2)}
+
+/* PANELS */
+.tab-panel{display:none;padding:2.5rem 2rem;max-width:1200px;margin:0 auto}
+.tab-panel.active{display:block}
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.section-title{font-family:var(--fd);font-weight:800;font-size:28px;letter-spacing:-.02em;color:var(--text);margin-bottom:4px}
+.section-sub{font-size:12px;color:var(--text2)}
+.rarity-legend{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);padding:1.5rem;margin-bottom:1.5rem}
+.card-label{font-size:9px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INPUTS */
+.text-input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:10px 14px;color:var(--text);font-family:var(--fm);font-size:13px;outline:none;transition:border-color .15s;width:100%}
+.text-input:focus{border-color:var(--accent2)}
+.text-input::placeholder{color:var(--text3)}
+.select-input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;color:var(--text);font-family:var(--fm);font-size:12px;outline:none;cursor:pointer}
+.wallet-textarea{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:12px 14px;color:var(--text);font-family:var(--fm);font-size:12px;outline:none;resize:vertical;line-height:1.8;transition:border-color .15s}
+.wallet-textarea:focus{border-color:var(--accent2)}
+.wallet-textarea::placeholder{color:var(--text3)}
+
+/* BUTTONS */
+.btn-primary{background:var(--accent);color:var(--bg);border:none;padding:10px 20px;border-radius:var(--r);font-family:var(--fd);font-weight:700;font-size:12px;cursor:pointer;letter-spacing:.02em;transition:background .15s,transform .1s;white-space:nowrap}
+.btn-primary:hover{background:var(--accent3)}
+.btn-primary:active{transform:scale(.97)}
+.btn-ghost{background:none;color:var(--text2);border:1px solid var(--border2);padding:9px 16px;border-radius:var(--r);font-family:var(--fm);font-size:12px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
+.btn-ghost:hover{background:var(--card2);color:var(--text)}
+.btn-share{width:100%;background:none;color:var(--accent);border:1px solid var(--accent2);padding:10px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s;letter-spacing:.04em;margin-top:1rem}
+.btn-share:hover{background:rgba(200,168,75,.08)}
+
+/* LOOKUP */
+.lookup-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.lookup-row .text-input{max-width:280px}
+.lookup-hint{font-size:10px;color:var(--text3);margin-top:10px;font-style:italic}
+
+/* RESULTS */
+.results-grid{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;margin-bottom:1.5rem}
+@media(max-width:700px){.results-grid{grid-template-columns:1fr}}
+
+/* GOBLYN CARD */
+.goblyn-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden}
+.goblyn-art{aspect-ratio:1;background:var(--card2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.goblyn-art img{width:100%;height:100%;object-fit:cover}
+.goblyn-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px}
+.goblyn-glyph{font-size:64px;color:var(--border2);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+.goblyn-id-art{font-family:var(--fd);font-weight:800;font-size:18px;color:var(--text2);letter-spacing:-.02em}
+.goblyn-meta{padding:1.2rem}
+.goblyn-name{font-family:var(--fd);font-weight:800;font-size:18px;color:var(--text);letter-spacing:-.02em;margin-bottom:1rem}
+.rarity-score-label{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+.rarity-score-value{font-family:var(--fd);font-weight:900;font-size:36px;color:var(--accent);letter-spacing:-.03em;line-height:1;margin-bottom:1rem}
+.rarity-rank-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.rank-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:8px;text-align:center}
+.rank-label{font-size:8px;letter-spacing:.1em;color:var(--text3);display:block;margin-bottom:3px;text-transform:uppercase}
+.rank-value{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--text)}
+.rarity-bar-track{height:4px;background:var(--surface);border-radius:2px;overflow:hidden}
+.rarity-bar-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width .8s cubic-bezier(.16,1,.3,1)}
+
+/* TRAITS */
+.traits-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden}
+.traits-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.traits-title{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
+.traits-count{font-size:10px;color:var(--muted);letter-spacing:.04em}
+.traits-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--border)}
+.trait-item{background:var(--card);padding:1rem;display:flex;flex-direction:column;gap:6px;transition:background .1s}
+.trait-item:hover{background:var(--card2)}
+.trait-category{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.trait-value{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--text);letter-spacing:-.01em}
+.trait-rarity-bar{height:2px;background:var(--surface);border-radius:1px;overflow:hidden}
+.trait-rarity-fill{height:100%;border-radius:1px}
+.trait-pct{font-size:9px;color:var(--text2);display:flex;justify-content:space-between;align-items:center}
+.trait-badge{font-size:8px;padding:1px 5px;border-radius:2px;letter-spacing:.06em}
+
+/* BADGES */
+.badge{font-size:9px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;font-family:var(--fm)}
+.badge.legendary,.trait-badge.legendary{background:rgba(240,204,112,.15);color:var(--legendary);border:1px solid rgba(240,204,112,.3)}
+.badge.epic,.trait-badge.epic{background:rgba(192,122,255,.12);color:var(--epic);border:1px solid rgba(192,122,255,.25)}
+.badge.rare,.trait-badge.rare{background:rgba(90,172,255,.12);color:var(--rare);border:1px solid rgba(90,172,255,.25)}
+.badge.uncommon,.trait-badge.uncommon{background:rgba(90,223,138,.1);color:var(--uncommon);border:1px solid rgba(90,223,138,.2)}
+.badge.common,.trait-badge.common{background:rgba(160,145,110,.1);color:var(--common);border:1px solid rgba(160,145,110,.2)}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;margin-bottom:1.5rem}
+.stat-card{background:var(--card);padding:1.2rem;transition:background .1s}
+.stat-card:hover{background:var(--card2)}
+.stat-label{font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.stat-value{font-family:var(--fd);font-weight:800;font-size:20px;color:var(--text);letter-spacing:-.02em}
+
+/* CHART */
+.chart-bars{display:flex;align-items:flex-end;gap:12px;height:120px;margin-bottom:8px}
+.chart-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.chart-bar-inner{width:100%;border-radius:2px 2px 0 0;min-height:4px}
+.chart-bar-label{font-size:9px;color:var(--text3);text-align:center;letter-spacing:.04em}
+.chart-axis{display:flex;justify-content:space-between;font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid var(--border);padding-top:8px}
+
+/* PHASES */
+.phases-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;margin-bottom:1.5rem}
+.phase-card{background:var(--card);padding:1.2rem;cursor:pointer;transition:background .1s;display:flex;align-items:center;gap:10px}
+.phase-card:hover,.phase-card.active-phase{background:var(--card2)}
+.phase-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.phase-info{flex:1}
+.phase-name{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text);margin-bottom:2px}
+.phase-count{font-size:10px;color:var(--text2)}
+.phase-cap{font-size:9px;color:var(--text3);letter-spacing:.04em}
+
+/* FORGE INPUT */
+.forge-input-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.phase-selector-wrap{display:flex;align-items:center;gap:8px}
+.input-label{font-size:10px;color:var(--text2);letter-spacing:.06em}
+.forge-input-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:8px;flex-wrap:wrap}
+.forge-btns{display:flex;gap:8px}
+.input-hint{font-size:10px;color:var(--text3);font-style:italic}
+.forge-actions{display:flex;gap:8px;align-items:center}
+
+/* DUPE REPORT */
+.dupe-stats{display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.dupe-stat{display:flex;align-items:baseline;gap:6px}
+.dupe-num{font-family:var(--fd);font-weight:800;font-size:24px;color:var(--text)}
+.dupe-num.green{color:var(--green)}
+.dupe-num.amber{color:var(--amber)}
+.dupe-num.red{color:var(--red)}
+.dupe-label{font-size:10px;color:var(--text2)}
+.dupe-list{display:flex;flex-direction:column;gap:4px;max-height:150px;overflow-y:auto}
+.dupe-row{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:var(--r);background:var(--surface);font-size:11px}
+.dupe-addr{color:var(--text2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dupe-tag{font-size:8px;padding:2px 6px;border-radius:2px;letter-spacing:.06em;flex-shrink:0}
+.dupe-tag.new{background:var(--green-bg);color:var(--green)}
+.dupe-tag.dup{background:var(--amber-bg);color:var(--amber)}
+.dupe-tag.invalid{background:var(--red-bg);color:var(--red)}
+
+/* TABLE */
+.table-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.table-controls{display:flex;gap:8px;flex-wrap:wrap}
+.search-input{max-width:200px}
+.table-wrap{overflow-x:auto;margin:1rem 0 0;border:1px solid var(--border);border-radius:var(--r)}
+.wl-table{width:100%;border-collapse:collapse;font-size:12px;font-family:var(--fm)}
+.wl-table th{padding:10px 14px;text-align:left;font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--surface)}
+.wl-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
+.wl-table tr:last-child td{border-bottom:none}
+.wl-table tr:hover td{background:var(--card2)}
+.empty-row td{text-align:center;color:var(--text3);padding:3rem;font-style:italic}
+.phase-pill{font-size:9px;padding:2px 8px;border-radius:2px;letter-spacing:.06em;white-space:nowrap}
+.phase-pill.community_gtd{background:rgba(200,168,75,.12);color:var(--accent)}
+.phase-pill.wl_collections{background:var(--purple-bg);color:var(--purple)}
+.phase-pill.collab_gtd{background:var(--green-bg);color:var(--green)}
+.phase-pill.fcfs{background:var(--red-bg);color:var(--red)}
+.addr-cell{font-size:11px;color:var(--text2)}
+.remove-btn{background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px;padding:2px 6px;border-radius:var(--r);transition:color .1s,background .1s}
+.remove-btn:hover{color:var(--red);background:var(--red-bg)}
+.table-footer{display:flex;justify-content:space-between;padding-top:10px;font-size:10px;color:var(--text3)}
+
+/* CAPACITY */
+.capacity-bars{display:flex;flex-direction:column;gap:14px}
+.cap-header{display:flex;justify-content:space-between;margin-bottom:5px}
+.cap-name{font-size:11px;color:var(--text2);letter-spacing:.04em}
+.cap-nums{font-size:10px;color:var(--text3)}
+.cap-track{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;border:1px solid var(--border)}
+.cap-fill{height:100%;border-radius:3px;transition:width .6s cubic-bezier(.16,1,.3,1)}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);background:var(--surface);padding:2rem;margin-top:2rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.footer-brand{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--accent)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:.04em;transition:color .15s}
+.footer-links a:hover{color:var(--accent)}
+.footer-note{font-size:10px;color:var(--text3);font-style:italic}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.results-grid,.dupe-card{animation:fadeInUp .35s ease}
+</style>
 </head>
 <body>
 
-  <!-- NOISE OVERLAY -->
-  <div class="noise"></div>
+<nav class="nav">
+  <a href="https://goblynz.xyz" target="_blank" class="nav-logo">&#x25C6; goblynz den</a>
+  <div class="nav-links">
+    <a href="#rarity" class="nav-link" data-tab="rarity">rarity checker</a>
+    <a href="#forge" class="nav-link" data-tab="forge">wl forge</a>
+  </div>
+  <a href="https://goblynz.xyz/mint.html" target="_blank" class="nav-cta">mint april 25 &#x2192;</a>
+</nav>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="https://goblynz.xyz" target="_blank" class="nav-logo">
-      <span class="logo-glyph">&#x25C6;</span> goblynz den
-    </a>
-    <div class="nav-links">
-      <a href="#rarity" class="nav-link" data-tab="rarity">rarity checker</a>
-      <a href="#forge" class="nav-link" data-tab="forge">wl forge</a>
+<header class="hero">
+  <div class="hero-eyebrow">community tools &middot; unofficial fan build</div>
+  <h1 class="hero-title">the den</h1>
+  <p class="hero-sub">rarity. whitelist. built for misfits.</p>
+  <div class="hero-tags">
+    <span class="tag">4,800 goblynz</span>
+    <span class="tag">ethereum &#x27E0;</span>
+    <span class="tag">free mint</span>
+    <span class="tag">13 hidden 1/1s</span>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="rarity">
+    <span class="tab-icon">&#x25B2;</span>
+    <span><span class="tab-name">rarity checker</span><span class="tab-desc">analyze your goblynz traits</span></span>
+  </button>
+  <button class="tab-btn" data-tab="forge">
+    <span class="tab-icon">&#x2692;</span>
+    <span><span class="tab-name">wl forge</span><span class="tab-desc">manage allowlists like a pro</span></span>
+  </button>
+</div>
+
+<!-- ═══════════════ RARITY TAB ═══════════════ -->
+<section id="rarity" class="tab-panel active">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">rarity checker</h2>
+      <p class="section-sub">enter a token id to see how rare your goblynz is</p>
     </div>
-    <a href="https://goblynz.xyz/mint.html" target="_blank" class="nav-cta">mint april 25 →</a>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-eyebrow">community tools · unofficial fan build</div>
-    <h1 class="hero-title">the den</h1>
-    <p class="hero-sub">rarity. whitelist. built for misfits.</p>
-    <div class="hero-tags">
-      <span class="tag">4,800 goblynz</span>
-      <span class="tag">ethereum ⟠</span>
-      <span class="tag">free mint</span>
-      <span class="tag">13 hidden 1/1s</span>
+    <div class="rarity-legend">
+      <span class="badge legendary">legendary</span>
+      <span class="badge epic">epic</span>
+      <span class="badge rare">rare</span>
+      <span class="badge uncommon">uncommon</span>
+      <span class="badge common">common</span>
     </div>
-  </header>
-
-  <!-- TAB BAR -->
-  <div class="tab-bar">
-    <button class="tab-btn active" data-tab="rarity">
-      <span class="tab-icon">&#x25B2;</span>
-      rarity checker
-      <span class="tab-desc">analyze your goblynz traits</span>
-    </button>
-    <button class="tab-btn" data-tab="forge">
-      <span class="tab-icon">&#x2692;</span>
-      wl forge
-      <span class="tab-desc">manage allowlists like a pro</span>
-    </button>
   </div>
 
-  <!-- ─────────────────────────────────────────
-       TAB 1: RARITY CHECKER
-  ───────────────────────────────────────── -->
-  <section id="rarity" class="tab-panel active">
+  <div class="card">
+    <div class="card-label">token lookup</div>
+    <div class="lookup-row">
+      <input type="number" id="token-id-input" class="text-input" placeholder="enter token id  e.g. 0420" min="1" max="4800"/>
+      <button class="btn-primary" id="lookup-btn">analyze &#x2197;</button>
+      <button class="btn-ghost" id="random-btn">random goblynz</button>
+    </div>
+    <p class="lookup-hint">* uses simulated trait data until the contract is revealed. real metadata will auto-load post-reveal.</p>
+  </div>
 
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">rarity checker</h2>
-        <p class="section-sub">paste your token id or enter traits manually to see how rare your goblynz is</p>
+  <div class="results-grid" id="results-panel" style="display:none">
+    <div class="goblyn-card">
+      <div class="goblyn-art" id="goblyn-art">
+        <div class="goblyn-placeholder" id="goblyn-placeholder">
+          <div class="goblyn-glyph">&#x25C6;</div>
+          <div class="goblyn-id-art" id="goblyn-id-display">#????</div>
+        </div>
       </div>
-      <div class="rarity-legend">
-        <span class="badge legendary">legendary</span>
-        <span class="badge epic">epic</span>
-        <span class="badge rare">rare</span>
-        <span class="badge uncommon">uncommon</span>
-        <span class="badge common">common</span>
+      <div class="goblyn-meta">
+        <div class="goblyn-name" id="goblyn-name">goblynz #????</div>
+        <div class="rarity-score-label">rarity score</div>
+        <div class="rarity-score-value" id="rarity-score">—</div>
+        <div class="rarity-rank-wrap">
+          <div class="rank-item"><span class="rank-label">rank</span><span class="rank-value" id="rarity-rank">—</span></div>
+          <div class="rank-item"><span class="rank-label">top</span><span class="rank-value" id="rarity-percentile">—</span></div>
+          <div class="rank-item"><span class="rank-label">tier</span><span class="rank-value" id="rarity-tier">—</span></div>
+        </div>
+        <div class="rarity-bar-track"><div class="rarity-bar-fill" id="rarity-bar"></div></div>
+        <button class="btn-share" id="share-btn">copy share card &#x2197;</button>
       </div>
     </div>
-
-    <!-- Token ID Lookup -->
-    <div class="card lookup-card">
-      <div class="card-label">token lookup</div>
-      <div class="lookup-row">
-        <input type="number" id="token-id-input" class="text-input" placeholder="enter token id  e.g. 0420" min="1" max="4800" />
-        <button class="btn-primary" id="lookup-btn">analyze ↗</button>
-        <button class="btn-ghost" id="random-btn">random goblynz</button>
+    <div class="traits-panel">
+      <div class="traits-header">
+        <span class="traits-title">trait breakdown</span>
+        <span class="traits-count" id="trait-count">— traits</span>
       </div>
-      <p class="lookup-hint">* uses simulated trait data until the contract is revealed. real metadata will auto-load post-reveal.</p>
+      <div class="traits-list" id="traits-list"></div>
     </div>
+  </div>
 
-    <!-- Results Panel -->
-    <div class="results-grid" id="results-panel" style="display:none;">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-label">total supply</div><div class="stat-value">4,800</div></div>
+    <div class="stat-card"><div class="stat-label">hidden 1/1s</div><div class="stat-value">13</div></div>
+    <div class="stat-card"><div class="stat-label">trait categories</div><div class="stat-value">8</div></div>
+    <div class="stat-card"><div class="stat-label">mint price</div><div class="stat-value">free</div></div>
+    <div class="stat-card"><div class="stat-label">storage</div><div class="stat-value">arweave</div></div>
+    <div class="stat-card"><div class="stat-label">chain</div><div class="stat-value">ethereum</div></div>
+  </div>
 
-      <!-- Goblyn Card -->
-      <div class="goblyn-card">
-        <div class="goblyn-art" id="goblyn-art">
-          <div class="goblyn-placeholder" id="goblyn-placeholder">
-            <div class="goblyn-glyph">&#x25C6;</div>
-            <div class="goblyn-id" id="goblyn-id-display">#????</div>
-          </div>
-        </div>
-        <div class="goblyn-meta">
-          <div class="goblyn-name" id="goblyn-name">goblynz <span id="goblyn-id">#????</span></div>
-          <div class="rarity-score-wrap">
-            <div class="rarity-score-label">rarity score</div>
-            <div class="rarity-score-value" id="rarity-score">—</div>
-          </div>
-          <div class="rarity-rank-wrap">
-            <div class="rank-item">
-              <span class="rank-label">rank</span>
-              <span class="rank-value" id="rarity-rank">—</span>
-            </div>
-            <div class="rank-item">
-              <span class="rank-label">top</span>
-              <span class="rank-value" id="rarity-percentile">—</span>
-            </div>
-            <div class="rank-item">
-              <span class="rank-label">tier</span>
-              <span class="rank-value" id="rarity-tier">—</span>
-            </div>
-          </div>
-          <div class="rarity-bar-wrap">
-            <div class="rarity-bar-track">
-              <div class="rarity-bar-fill" id="rarity-bar"></div>
-            </div>
-          </div>
-          <button class="btn-share" id="share-btn">copy share card ↗</button>
-        </div>
-      </div>
+  <div class="card">
+    <div class="card-label">rarity distribution</div>
+    <div class="chart-bars" id="rarity-chart"></div>
+    <div class="chart-axis"><span>legendary</span><span>epic</span><span>rare</span><span>uncommon</span><span>common</span></div>
+  </div>
+</section>
 
-      <!-- Traits Panel -->
-      <div class="traits-panel">
-        <div class="traits-header">
-          <h3 class="traits-title">trait breakdown</h3>
-          <span class="traits-count" id="trait-count">— traits</span>
-        </div>
-        <div class="traits-list" id="traits-list">
-          <!-- populated by JS -->
-        </div>
-      </div>
-
+<!-- ═══════════════ FORGE TAB ═══════════════ -->
+<section id="forge" class="tab-panel">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">wl forge</h2>
+      <p class="section-sub">allowlist manager &middot; phases &middot; dedup &middot; export</p>
     </div>
+    <div class="forge-actions">
+      <button class="btn-ghost" id="clear-all-btn">clear all</button>
+      <button class="btn-primary" id="export-btn">export csv &#x2197;</button>
+    </div>
+  </div>
 
-    <!-- Collection Stats -->
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-label">total supply</div>
-        <div class="stat-value">4,800</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">hidden 1/1s</div>
-        <div class="stat-value">13</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">trait categories</div>
-        <div class="stat-value">8</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">mint price</div>
-        <div class="stat-value">free</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">storage</div>
-        <div class="stat-value">arweave</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">chain</div>
-        <div class="stat-value">ethereum</div>
+  <div class="phases-row">
+    <div class="phase-card active-phase" data-phase="community_gtd">
+      <div class="phase-dot" style="background:#c8a84b"></div>
+      <div class="phase-info"><div class="phase-name">community gtd</div><div class="phase-count" id="count-community_gtd">0 wallets</div></div>
+      <div class="phase-cap">cap: 1,000</div>
+    </div>
+    <div class="phase-card" data-phase="wl_collections">
+      <div class="phase-dot" style="background:#9b6bc4"></div>
+      <div class="phase-info"><div class="phase-name">wl collections</div><div class="phase-count" id="count-wl_collections">0 wallets</div></div>
+      <div class="phase-cap">cap: 300</div>
+    </div>
+    <div class="phase-card" data-phase="collab_gtd">
+      <div class="phase-dot" style="background:#5a9e4a"></div>
+      <div class="phase-info"><div class="phase-name">collab gtd</div><div class="phase-count" id="count-collab_gtd">0 wallets</div></div>
+      <div class="phase-cap">cap: 2,100</div>
+    </div>
+    <div class="phase-card" data-phase="fcfs">
+      <div class="phase-dot" style="background:#b04040"></div>
+      <div class="phase-info"><div class="phase-name">fcfs</div><div class="phase-count" id="count-fcfs">0 wallets</div></div>
+      <div class="phase-cap">cap: 410</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="forge-input-header">
+      <div class="card-label" style="margin-bottom:0">add wallets</div>
+      <div class="phase-selector-wrap">
+        <span class="input-label">phase</span>
+        <select id="phase-select" class="select-input">
+          <option value="community_gtd">community gtd</option>
+          <option value="wl_collections">wl collections</option>
+          <option value="collab_gtd">collab gtd</option>
+          <option value="fcfs">fcfs</option>
+        </select>
       </div>
     </div>
-
-    <!-- Rarity Distribution Chart -->
-    <div class="card chart-card">
-      <div class="card-label">rarity distribution</div>
-      <div class="chart-wrap">
-        <div class="chart-bars" id="rarity-chart">
-          <!-- populated by JS -->
-        </div>
-        <div class="chart-axis">
-          <span>legendary</span><span>epic</span><span>rare</span><span>uncommon</span><span>common</span>
-        </div>
+    <div style="margin-top:1rem">
+      <textarea id="wallet-input" class="wallet-textarea" placeholder="paste wallet addresses here, one per line or comma-separated&#10;&#10;0x1234...abcd&#10;0x5678...efgh&#10;&#10;duplicates are automatically removed" rows="6"></textarea>
+    </div>
+    <div class="forge-input-footer">
+      <span class="input-hint" id="wallet-parse-hint">paste addresses above to begin</span>
+      <div class="forge-btns">
+        <button class="btn-ghost" id="parse-preview-btn">preview</button>
+        <button class="btn-primary" id="add-wallets-btn">add to phase &#x2197;</button>
       </div>
     </div>
+  </div>
 
-  </section>
+  <div class="card dupe-card" id="dupe-card" style="display:none">
+    <div class="card-label">parse report</div>
+    <div class="dupe-stats">
+      <div class="dupe-stat"><span class="dupe-num" id="dupe-total">0</span><span class="dupe-label">pasted</span></div>
+      <div class="dupe-stat"><span class="dupe-num green" id="dupe-new">0</span><span class="dupe-label">new unique</span></div>
+      <div class="dupe-stat"><span class="dupe-num amber" id="dupe-dupe">0</span><span class="dupe-label">duplicates</span></div>
+      <div class="dupe-stat"><span class="dupe-num red" id="dupe-invalid">0</span><span class="dupe-label">invalid</span></div>
+    </div>
+    <div class="dupe-list" id="dupe-list"></div>
+  </div>
 
-  <!-- ─────────────────────────────────────────
-       TAB 2: WL FORGE
-  ───────────────────────────────────────── -->
-  <section id="forge" class="tab-panel">
-
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">wl forge</h2>
-        <p class="section-sub">allowlist manager for nft projects · phases · dedup · export</p>
-      </div>
-      <div class="forge-actions">
-        <button class="btn-ghost" id="clear-all-btn">clear all</button>
-        <button class="btn-primary" id="export-btn">export csv ↗</button>
+  <div class="card">
+    <div class="table-header">
+      <div class="card-label" style="margin-bottom:0">allowlist</div>
+      <div class="table-controls">
+        <input type="text" id="search-input" class="text-input search-input" placeholder="search address..."/>
+        <select id="filter-phase" class="select-input">
+          <option value="all">all phases</option>
+          <option value="community_gtd">community gtd</option>
+          <option value="wl_collections">wl collections</option>
+          <option value="collab_gtd">collab gtd</option>
+          <option value="fcfs">fcfs</option>
+        </select>
       </div>
     </div>
-
-    <!-- Phase Manager -->
-    <div class="phases-row">
-      <div class="phase-card active-phase" data-phase="community_gtd">
-        <div class="phase-dot" style="background:#c8a84b"></div>
-        <div class="phase-info">
-          <div class="phase-name">community gtd</div>
-          <div class="phase-count" id="count-community_gtd">0 wallets</div>
-        </div>
-        <div class="phase-cap">cap: 1,000</div>
-      </div>
-      <div class="phase-card" data-phase="wl_collections">
-        <div class="phase-dot" style="background:#7a5c9b"></div>
-        <div class="phase-info">
-          <div class="phase-name">wl collections</div>
-          <div class="phase-count" id="count-wl_collections">0 wallets</div>
-        </div>
-        <div class="phase-cap">cap: 300</div>
-      </div>
-      <div class="phase-card" data-phase="collab_gtd">
-        <div class="phase-dot" style="background:#4a7c3f"></div>
-        <div class="phase-info">
-          <div class="phase-name">collab gtd</div>
-          <div class="phase-count" id="count-collab_gtd">0 wallets</div>
-        </div>
-        <div class="phase-cap">cap: 2,100</div>
-      </div>
-      <div class="phase-card" data-phase="fcfs">
-        <div class="phase-dot" style="background:#8b3a2e"></div>
-        <div class="phase-info">
-          <div class="phase-name">fcfs</div>
-          <div class="phase-count" id="count-fcfs">0 wallets</div>
-        </div>
-        <div class="phase-cap">cap: 410</div>
-      </div>
+    <div class="table-wrap">
+      <table class="wl-table">
+        <thead><tr><th>#</th><th>wallet address</th><th>phase</th><th>added</th><th>action</th></tr></thead>
+        <tbody id="wl-tbody"><tr class="empty-row"><td colspan="5">no wallets yet &middot; add some above</td></tr></tbody>
+      </table>
     </div>
-
-    <!-- Add Wallets -->
-    <div class="card forge-input-card">
-      <div class="forge-input-header">
-        <div class="card-label">add wallets</div>
-        <div class="phase-selector-wrap">
-          <label class="input-label" for="phase-select">phase</label>
-          <select id="phase-select" class="select-input">
-            <option value="community_gtd">community gtd</option>
-            <option value="wl_collections">wl collections</option>
-            <option value="collab_gtd">collab gtd</option>
-            <option value="fcfs">fcfs</option>
-          </select>
-        </div>
-      </div>
-      <textarea
-        id="wallet-input"
-        class="wallet-textarea"
-        placeholder="paste wallet addresses here, one per line or comma-separated&#10;&#10;0x1234...abcd&#10;0x5678...efgh&#10;&#10;duplicates are automatically removed"
-        rows="6"
-      ></textarea>
-      <div class="forge-input-footer">
-        <div class="input-hint" id="wallet-parse-hint">paste addresses above to begin</div>
-        <div class="forge-btns">
-          <button class="btn-ghost" id="parse-preview-btn">preview</button>
-          <button class="btn-primary" id="add-wallets-btn">add to phase ↗</button>
-        </div>
-      </div>
+    <div class="table-footer">
+      <span id="table-count">0 wallets total</span>
+      <span id="table-showing">showing 0</span>
     </div>
+  </div>
 
-    <!-- Preview / Duplicate Report -->
-    <div class="card dupe-card" id="dupe-card" style="display:none;">
-      <div class="card-label">parse report</div>
-      <div class="dupe-stats">
-        <div class="dupe-stat">
-          <span class="dupe-num" id="dupe-total">0</span>
-          <span class="dupe-label">pasted</span>
-        </div>
-        <div class="dupe-stat">
-          <span class="dupe-num green" id="dupe-new">0</span>
-          <span class="dupe-label">new unique</span>
-        </div>
-        <div class="dupe-stat">
-          <span class="dupe-num amber" id="dupe-dupe">0</span>
-          <span class="dupe-label">duplicates</span>
-        </div>
-        <div class="dupe-stat">
-          <span class="dupe-num red" id="dupe-invalid">0</span>
-          <span class="dupe-label">invalid</span>
-        </div>
-      </div>
-      <div class="dupe-list" id="dupe-list"></div>
+  <div class="card">
+    <div class="card-label">phase capacity</div>
+    <div class="capacity-bars" id="capacity-bars"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">&#x25C6; goblynz den &middot; unofficial community tool</div>
+    <div class="footer-links">
+      <a href="https://goblynz.xyz" target="_blank">goblynz.xyz</a>
+      <a href="https://x.com/goblynznft" target="_blank">x / twitter</a>
+      <a href="https://discord.gg/goblynz" target="_blank">discord</a>
+      <a href="https://opensea.io/collection/goblynz" target="_blank">opensea</a>
     </div>
+    <div class="footer-note">be weird. normal is crowded.</div>
+  </div>
+</footer>
 
-    <!-- Wallet Table -->
-    <div class="card table-card">
-      <div class="table-header">
-        <div class="card-label">allowlist</div>
-        <div class="table-controls">
-          <input type="text" id="search-input" class="text-input search-input" placeholder="search address..." />
-          <select id="filter-phase" class="select-input">
-            <option value="all">all phases</option>
-            <option value="community_gtd">community gtd</option>
-            <option value="wl_collections">wl collections</option>
-            <option value="collab_gtd">collab gtd</option>
-            <option value="fcfs">fcfs</option>
-          </select>
-        </div>
-      </div>
+<script>
+// ═══ TRAITS DATA ═══
+const TRAIT_POOL={background:{label:"Background",traits:[{value:"Cursed Swamp",pct:2.1,tier:"legendary"},{value:"Void Black",pct:3.4,tier:"legendary"},{value:"Goblin Ruins",pct:5.8,tier:"epic"},{value:"Moldy Cavern",pct:7.2,tier:"epic"},{value:"Sewer Mist",pct:9.4,tier:"rare"},{value:"Rotted Forest",pct:11.3,tier:"rare"},{value:"Toxic Green",pct:13.6,tier:"uncommon"},{value:"Dungeon Stone",pct:15.1,tier:"uncommon"},{value:"Mud Brown",pct:17.4,tier:"common"},{value:"Dull Ochre",pct:14.7,tier:"common"}]},skin:{label:"Skin",traits:[{value:"Cursed Void",pct:1.2,tier:"legendary"},{value:"Bioluminescent",pct:2.8,tier:"legendary"},{value:"Fungal Bloom",pct:4.6,tier:"epic"},{value:"Rotting Flesh",pct:6.3,tier:"epic"},{value:"Swamp Green",pct:9.1,tier:"rare"},{value:"Sickly Yellow",pct:12.4,tier:"rare"},{value:"Pale Ash",pct:14.8,tier:"uncommon"},{value:"Mud Green",pct:16.2,tier:"uncommon"},{value:"Olive",pct:17.8,tier:"common"},{value:"Mossy Brown",pct:14.8,tier:"common"}]},eyes:{label:"Eyes",traits:[{value:"Spectral White",pct:1.8,tier:"legendary"},{value:"Third Eye",pct:3.2,tier:"legendary"},{value:"Bloodshot Gold",pct:5.1,tier:"epic"},{value:"Milky Dead",pct:7.4,tier:"epic"},{value:"Toxic Yellow",pct:10.2,tier:"rare"},{value:"Glowing Red",pct:12.8,tier:"rare"},{value:"Sunken Black",pct:14.9,tier:"uncommon"},{value:"Beady Brown",pct:16.3,tier:"uncommon"},{value:"Squinting",pct:14.4,tier:"common"},{value:"Wide Blank",pct:13.9,tier:"common"}]},mouth:{label:"Mouth",traits:[{value:"Void Maw",pct:2.4,tier:"legendary"},{value:"Gold Fang",pct:3.8,tier:"legendary"},{value:"Broken Jaw",pct:5.6,tier:"epic"},{value:"Rotten Grin",pct:7.9,tier:"epic"},{value:"Crooked Teeth",pct:10.6,tier:"rare"},{value:"Missing Tooth",pct:12.1,tier:"rare"},{value:"Mumbling",pct:14.7,tier:"uncommon"},{value:"Sneering",pct:15.8,tier:"uncommon"},{value:"Grumpy Frown",pct:14.3,tier:"common"},{value:"Blank Stare",pct:12.8,tier:"common"}]},head:{label:"Head",traits:[{value:"Cursed Crown",pct:1.4,tier:"legendary"},{value:"Witch Hat",pct:2.9,tier:"legendary"},{value:"Rusty Helmet",pct:4.7,tier:"epic"},{value:"Bone Headband",pct:6.8,tier:"epic"},{value:"Mushroom Cap",pct:9.3,tier:"rare"},{value:"Rat Nest Hair",pct:11.9,tier:"rare"},{value:"Matted Mane",pct:14.6,tier:"uncommon"},{value:"Bald",pct:16.4,tier:"uncommon"},{value:"Scraggly Hair",pct:17.1,tier:"common"},{value:"None",pct:14.9,tier:"common"}]},clothing:{label:"Clothing",traits:[{value:"Void Robe",pct:1.9,tier:"legendary"},{value:"Elder Cloak",pct:3.3,tier:"legendary"},{value:"Tattered Armor",pct:5.4,tier:"epic"},{value:"Bone Vest",pct:7.1,tier:"epic"},{value:"Sewer Rags",pct:10.4,tier:"rare"},{value:"Torn Tunic",pct:12.6,tier:"rare"},{value:"Muddy Wrap",pct:14.8,tier:"uncommon"},{value:"Burlap Sack",pct:16.2,tier:"uncommon"},{value:"Nothing",pct:15.4,tier:"common"},{value:"Filthy Rag",pct:12.9,tier:"common"}]},accessory:{label:"Accessory",traits:[{value:"Cursed Amulet",pct:1.6,tier:"legendary"},{value:"Skull Necklace",pct:3.1,tier:"legendary"},{value:"Rusty Chain",pct:5.2,tier:"epic"},{value:"Bone Ring",pct:7.6,tier:"epic"},{value:"Rat Familiar",pct:10.1,tier:"rare"},{value:"Twig Staff",pct:12.4,tier:"rare"},{value:"Dead Flower",pct:9.4,tier:"rare"},{value:"Broken Bottle",pct:15.1,tier:"uncommon"},{value:"Muddy Pouch",pct:14.2,tier:"uncommon"},{value:"None",pct:21.3,tier:"common"}]},special:{label:"Special",traits:[{value:"1/1 Unique",pct:0.27,tier:"legendary"},{value:"Cursed Mark",pct:2.1,tier:"legendary"},{value:"Glow Aura",pct:4.3,tier:"epic"},{value:"Fungal Growth",pct:6.8,tier:"epic"},{value:"Scar",pct:11.2,tier:"rare"},{value:"Tattoo",pct:13.6,tier:"rare"},{value:"None",pct:61.73,tier:"common"}]}};
+const TIER_COLORS={legendary:"#f0cc70",epic:"#c07aff",rare:"#5aacff",uncommon:"#5adf8a",common:"#6b6047"};
+function seededRand(seed){let s=seed;return function(){s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff}}
+function generateGoblynz(id){const rand=seededRand(id*7919+31337);const traits={};for(const[cat,data]of Object.entries(TRAIT_POOL)){const pool=data.traits;const roll=rand()*100;let cum=0,chosen=pool[pool.length-1];for(const t of pool){cum+=t.pct;if(roll<=cum){chosen=t;break}}traits[cat]={...chosen,label:data.label}}return traits}
+function calcScore(traits){let s=0;for(const t of Object.values(traits))s+=(100/t.pct);return Math.round(s)}
+function calcRank(score){const norm=(score-180)/(2800-180);return Math.max(1,Math.round(4800-norm*4798))}
 
-      <div class="table-wrap">
-        <table class="wl-table" id="wl-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>wallet address</th>
-              <th>phase</th>
-              <th>added</th>
-              <th>action</th>
-            </tr>
-          </thead>
-          <tbody id="wl-tbody">
-            <tr class="empty-row">
-              <td colspan="5">no wallets yet · add some above</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-footer">
-        <span id="table-count">0 wallets total</span>
-        <span id="table-showing">showing 0</span>
-      </div>
-    </div>
+// ═══ RARITY MODULE ═══
+function analyzeToken(tokenId){
+  const id=parseInt(tokenId);
+  if(!id||id<1||id>4800){alert("please enter a valid token id between 1 and 4800");return}
+  const traits=generateGoblynz(id);
+  const score=calcScore(traits);
+  const rank=calcRank(score);
+  const topPct=((rank/4800)*100).toFixed(1);
+  const tier=score>1400?"legendary":score>900?"epic":score>600?"rare":score>380?"uncommon":"common";
+  // update card
+  document.getElementById("goblyn-id-display").textContent="#"+String(id).padStart(4,"0");
+  document.getElementById("goblyn-name").textContent="goblynz #"+String(id).padStart(4,"0");
+  document.getElementById("rarity-score").textContent=score.toLocaleString();
+  document.getElementById("rarity-rank").textContent="#"+rank.toLocaleString();
+  document.getElementById("rarity-percentile").textContent=topPct+"%";
+  document.getElementById("rarity-tier").innerHTML='<span class="badge '+tier+'">'+tier+"</span>";
+  const bar=document.getElementById("rarity-bar");
+  bar.style.width=Math.min(100,Math.round((score/2000)*100))+"%";
+  bar.style.background=TIER_COLORS[tier];
+  // traits
+  const list=document.getElementById("traits-list");
+  list.innerHTML="";
+  const entries=Object.entries(traits);
+  document.getElementById("trait-count").textContent=entries.length+" traits";
+  entries.forEach(([,t])=>{
+    const d=document.createElement("div");d.className="trait-item";
+    const bw=Math.max(4,Math.round((1-t.pct/100)*100));
+    d.innerHTML='<div class="trait-category">'+t.label+'</div><div class="trait-value">'+t.value+'</div><div class="trait-rarity-bar"><div class="trait-rarity-fill" style="width:'+bw+'%;background:'+TIER_COLORS[t.tier]+'"></div></div><div class="trait-pct"><span>'+t.pct.toFixed(1)+'% have this</span><span class="trait-badge '+t.tier+'">'+t.tier+"</span></div>";
+    list.appendChild(d);
+  });
+  document.getElementById("results-panel").style.display="grid";
+  document.getElementById("results-panel").scrollIntoView({behavior:"smooth",block:"start"});
+}
 
-    <!-- Capacity Overview -->
-    <div class="card capacity-card">
-      <div class="card-label">phase capacity</div>
-      <div class="capacity-bars" id="capacity-bars">
-        <!-- populated by JS -->
-      </div>
-    </div>
+function renderChart(){
+  const chart=document.getElementById("rarity-chart");chart.innerHTML="";
+  const tiers=[{key:"legendary",color:TIER_COLORS.legendary,count:96},{key:"epic",color:TIER_COLORS.epic,count:240},{key:"rare",color:TIER_COLORS.rare,count:672},{key:"uncommon",color:TIER_COLORS.uncommon,count:1152},{key:"common",color:TIER_COLORS.common,count:2640}];
+  const max=2640;
+  tiers.forEach(t=>{const pct=Math.round((t.count/max)*100);const g=document.createElement("div");g.className="chart-bar-group";g.innerHTML='<div class="chart-bar-label">'+t.count.toLocaleString()+'</div><div class="chart-bar-inner" style="height:'+pct+'%;background:'+t.color+';opacity:0.75"></div>';chart.appendChild(g)});
+}
 
-  </section>
+// ═══ FORGE MODULE ═══
+const PHASES={community_gtd:{label:"community gtd",cap:1000,color:"#c8a84b"},wl_collections:{label:"wl collections",cap:300,color:"#9b6bc4"},collab_gtd:{label:"collab gtd",cap:2100,color:"#5a9e4a"},fcfs:{label:"fcfs",cap:410,color:"#b04040"}};
+let wallets=[];
+let currentPhase="community_gtd";
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">&#x25C6; goblynz den · unofficial community tool</div>
-      <div class="footer-links">
-        <a href="https://goblynz.xyz" target="_blank">goblynz.xyz</a>
-        <a href="https://x.com/goblynznft" target="_blank">x / twitter</a>
-        <a href="https://discord.gg/goblynz" target="_blank">discord</a>
-        <a href="https://opensea.io/collection/goblynz" target="_blank">opensea</a>
-      </div>
-      <div class="footer-note">be weird. normal is crowded.</div>
-    </div>
-  </footer>
+function isValidEth(a){return/^0x[0-9a-fA-F]{40}$/.test(a.trim())}
+function norm(a){return a.trim().toLowerCase()}
 
-  <script src="js/traits.js"></script>
-  <script src="js/rarity.js"></script>
-  <script src="js/forge.js"></script>
-  <script src="js/app.js"></script>
+function parseInput(raw){
+  const lines=raw.replace(/,/g,"\n").split(/\n/).map(l=>l.trim()).filter(Boolean);
+  const existing=new Set(wallets.map(w=>w.address));
+  const seen=new Set();const results=[];
+  lines.forEach(line=>{
+    if(!isValidEth(line)){results.push({raw:line,status:"invalid"});return}
+    const n=norm(line);
+    if(existing.has(n)||seen.has(n)){results.push({raw:line,address:n,status:"dup"})}
+    else{seen.add(n);results.push({raw:line,address:n,status:"new"})}
+  });
+  return results;
+}
+
+function renderParseReport(results){
+  document.getElementById("dupe-total").textContent=results.length;
+  document.getElementById("dupe-new").textContent=results.filter(r=>r.status==="new").length;
+  document.getElementById("dupe-dupe").textContent=results.filter(r=>r.status==="dup").length;
+  document.getElementById("dupe-invalid").textContent=results.filter(r=>r.status==="invalid").length;
+  const list=document.getElementById("dupe-list");list.innerHTML="";
+  results.slice(0,40).forEach(r=>{
+    const row=document.createElement("div");row.className="dupe-row";
+    const tc=r.status==="new"?"new":r.status==="dup"?"dup":"invalid";
+    const tl=r.status==="new"?"new":r.status==="dup"?"duplicate":"invalid";
+    row.innerHTML='<span class="dupe-addr">'+(r.address||r.raw)+'</span><span class="dupe-tag '+tc+'">'+tl+"</span>";
+    list.appendChild(row);
+  });
+  if(results.length>40){const m=document.createElement("div");m.className="dupe-row";m.innerHTML='<span class="dupe-addr" style="font-style:italic;color:var(--text3)">...and '+(results.length-40)+" more</span>";list.appendChild(m)}
+  document.getElementById("dupe-card").style.display="block";
+}
+
+function addWallets(){
+  const raw=document.getElementById("wallet-input").value;if(!raw.trim())return;
+  const results=parseInput(raw);
+  const newW=results.filter(r=>r.status==="new").map(r=>({address:r.address,phase:currentPhase,addedAt:new Date().toISOString()}));
+  wallets=[...wallets,...newW];
+  renderParseReport(results);renderTable();renderCapacity();updateCounts();
+  document.getElementById("wallet-input").value="";
+  document.getElementById("wallet-parse-hint").textContent=newW.length+" wallets added · "+results.filter(r=>r.status==="dup").length+" duplicates skipped";
+}
+
+function removeWallet(address){wallets=wallets.filter(w=>w.address!==address);renderTable();renderCapacity();updateCounts()}
+
+function renderTable(fp="all",search=""){
+  const tbody=document.getElementById("wl-tbody");tbody.innerHTML="";
+  const filtered=wallets.filter(w=>(fp==="all"||w.phase===fp)&&(!search||w.address.includes(search.toLowerCase())));
+  document.getElementById("table-count").textContent=wallets.length+" wallets total";
+  document.getElementById("table-showing").textContent="showing "+filtered.length;
+  if(!filtered.length){tbody.innerHTML='<tr class="empty-row"><td colspan="5">no wallets match &middot; add some above</td></tr>';return}
+  filtered.forEach((w,i)=>{
+    const tr=document.createElement("tr");
+    const d=new Date(w.addedAt);
+    const ds=(d.getMonth()+1)+"/"+d.getDate()+" "+d.getHours()+":"+String(d.getMinutes()).padStart(2,"0");
+    const short=w.address.slice(0,6)+"..."+w.address.slice(-4);
+    tr.innerHTML='<td style="color:var(--text3);width:40px">'+(i+1)+'</td><td class="addr-cell" title="'+w.address+'">'+short+'</td><td><span class="phase-pill '+w.phase+'">'+PHASES[w.phase].label+'</span></td><td style="color:var(--text3)">'+ds+'</td><td><button class="remove-btn" data-addr="'+w.address+'" title="remove">&#x2715;</button></td>';
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll(".remove-btn").forEach(btn=>btn.addEventListener("click",()=>removeWallet(btn.dataset.addr)));
+}
+
+function renderCapacity(){
+  const c=document.getElementById("capacity-bars");c.innerHTML="";
+  for(const[key,ph]of Object.entries(PHASES)){
+    const count=wallets.filter(w=>w.phase===key).length;
+    const pct=Math.min(100,Math.round((count/ph.cap)*100));
+    const div=document.createElement("div");div.className="cap-row";
+    div.innerHTML='<div class="cap-header"><span class="cap-name">'+ph.label+'</span><span class="cap-nums">'+count.toLocaleString()+" / "+ph.cap.toLocaleString()+' <span style="color:var(--text3)">('+pct+'%)</span></span></div><div class="cap-track"><div class="cap-fill" style="width:'+pct+'%;background:'+ph.color+'"></div></div>';
+    c.appendChild(div);
+  }
+}
+
+function updateCounts(){
+  for(const key of Object.keys(PHASES)){
+    const el=document.getElementById("count-"+key);
+    if(el)el.textContent=wallets.filter(w=>w.phase===key).length+" wallets";
+  }
+}
+
+function exportCSV(){
+  if(!wallets.length){alert("no wallets to export");return}
+  const blob=new Blob(["address,phase,added_at\n"+wallets.map(w=>w.address+","+w.phase+","+w.addedAt).join("\n")],{type:"text/csv"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="goblynz-allowlist-"+new Date().toISOString().slice(0,10)+".csv";a.click();
+}
+
+function loadDemo(){
+  wallets=[
+    {address:"0xd8da6bf26964af9d7eed9e03e53415d37aa96045",phase:"community_gtd",addedAt:new Date().toISOString()},
+    {address:"0xab5801a7d398351b8be11c439e05c5b3259aec9b",phase:"community_gtd",addedAt:new Date().toISOString()},
+    {address:"0x742d35cc6634c0532925a3b844bc454e4438f44e",phase:"wl_collections",addedAt:new Date().toISOString()},
+    {address:"0x3f17f1962b36e491b30a40b2405849e597ba5fb5",phase:"wl_collections",addedAt:new Date().toISOString()},
+    {address:"0x6b175474e89094c44da98b954eedeac495271d0f",phase:"collab_gtd",addedAt:new Date().toISOString()},
+    {address:"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",phase:"collab_gtd",addedAt:new Date().toISOString()},
+    {address:"0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",phase:"fcfs",addedAt:new Date().toISOString()},
+  ];
+  renderTable();renderCapacity();updateCounts();
+}
+
+// ═══ APP INIT ═══
+document.addEventListener("DOMContentLoaded",()=>{
+  // tabs
+  const tabBtns=document.querySelectorAll(".tab-btn");
+  const tabPanels=document.querySelectorAll(".tab-panel");
+  const navLinks=document.querySelectorAll(".nav-link");
+  function switchTab(id){
+    tabBtns.forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+    tabPanels.forEach(p=>p.classList.toggle("active",p.id===id));
+    navLinks.forEach(l=>l.classList.toggle("active-link",l.dataset.tab===id));
+    history.replaceState(null,"","#"+id);
+  }
+  tabBtns.forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+  navLinks.forEach(l=>l.addEventListener("click",e=>{e.preventDefault();switchTab(l.dataset.tab)}));
+  const hash=location.hash.replace("#","");
+  if(hash==="forge")switchTab("forge");
+
+  // rarity init
+  renderChart();
+  document.getElementById("lookup-btn").addEventListener("click",()=>analyzeToken(document.getElementById("token-id-input").value));
+  document.getElementById("token-id-input").addEventListener("keydown",e=>{if(e.key==="Enter")analyzeToken(e.target.value)});
+  document.getElementById("random-btn").addEventListener("click",()=>{const id=Math.floor(Math.random()*4800)+1;document.getElementById("token-id-input").value=id;analyzeToken(id)});
+  document.getElementById("share-btn").addEventListener("click",()=>{
+    const id=document.getElementById("goblyn-id-display").textContent;
+    const score=document.getElementById("rarity-score").textContent;
+    const rank=document.getElementById("rarity-rank").textContent;
+    navigator.clipboard.writeText("🔺 goblynz "+id+"\nrarity score: "+score+"\nrank: "+rank+"\n\ncheck yours → https://goblynz.xyz\n\n#goblynz #nft").then(()=>{
+      const btn=document.getElementById("share-btn");const orig=btn.textContent;btn.textContent="copied! ✓";setTimeout(()=>btn.textContent=orig,2000);
+    });
+  });
+
+  // forge init
+  renderCapacity();renderTable();loadDemo();
+  document.getElementById("phase-select").addEventListener("change",e=>{
+    currentPhase=e.target.value;
+    document.querySelectorAll(".phase-card").forEach(c=>c.classList.toggle("active-phase",c.dataset.phase===currentPhase));
+  });
+  document.querySelectorAll(".phase-card").forEach(card=>card.addEventListener("click",()=>{
+    currentPhase=card.dataset.phase;
+    document.getElementById("phase-select").value=currentPhase;
+    document.querySelectorAll(".phase-card").forEach(c=>c.classList.toggle("active-phase",c.dataset.phase===currentPhase));
+  }));
+  document.getElementById("wallet-input").addEventListener("input",e=>{
+    const lines=e.target.value.replace(/,/g,"\n").split(/\n/).map(l=>l.trim()).filter(Boolean);
+    document.getElementById("wallet-parse-hint").textContent=e.target.value.trim()?lines.length+" lines detected":"paste addresses above to begin";
+  });
+  document.getElementById("parse-preview-btn").addEventListener("click",()=>{const raw=document.getElementById("wallet-input").value;if(raw.trim())renderParseReport(parseInput(raw))});
+  document.getElementById("add-wallets-btn").addEventListener("click",addWallets);
+  document.getElementById("export-btn").addEventListener("click",exportCSV);
+  document.getElementById("clear-all-btn").addEventListener("click",()=>{
+    if(!wallets.length)return;
+    if(confirm("remove all "+wallets.length+" wallets from the allowlist?")){wallets=[];renderTable();renderCapacity();updateCounts();document.getElementById("dupe-card").style.display="none"}
+  });
+  document.getElementById("search-input").addEventListener("input",e=>renderTable(document.getElementById("filter-phase").value,e.target.value));
+  document.getElementById("filter-phase").addEventListener("change",e=>renderTable(e.target.value,document.getElementById("search-input").value));
+});
+</script>
 </body>
 </html>
