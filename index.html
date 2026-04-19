@@ -24,263 +24,290 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px;line-height:1.6;min-height:100vh;overflow-x:hidden}
 
-/* NAV */
-.nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:50;gap:1rem}
-.nav-logo{font-family:var(--fd);font-weight:800;font-size:16px;color:var(--accent);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:6px;white-space:nowrap}
+/* ── NAV ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:50;gap:1rem;flex-wrap:wrap}
+.nav-logo{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--accent);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:6px;white-space:nowrap}
 .nav-links{display:flex;background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
 .nav-link{padding:6px 14px;text-decoration:none;color:var(--text2);font-size:11px;letter-spacing:.04em;transition:background .15s,color .15s;border-right:1px solid var(--border);white-space:nowrap}
 .nav-link:last-child{border-right:none}
 .nav-link:hover,.nav-link.active-link{background:var(--card2);color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:10px}
+.nav-right{display:flex;align-items:center;gap:8px}
 .nav-user{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px}
-.nav-points{font-family:var(--fd);font-weight:700;color:var(--accent);font-size:12px}
-.nav-cta{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--bg);background:var(--accent);padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:background .15s;white-space:nowrap}
+.nav-pts{font-family:var(--fd);font-weight:700;color:var(--accent);font-size:12px}
+.nav-cta{font-family:var(--fd);font-weight:700;font-size:11px;color:var(--bg);background:var(--accent);padding:6px 12px;border-radius:var(--r);text-decoration:none;transition:background .15s;white-space:nowrap}
 .nav-cta:hover{background:var(--accent3)}
+.btn-sm{background:none;color:var(--text2);border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
+.btn-sm:hover{background:var(--card2);color:var(--text)}
 
-/* HERO */
+/* ── HERO ── */
 .hero{text-align:center;padding:4rem 2rem 2.5rem;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,168,75,.06) 0%,transparent 70%)}
 .hero-eyebrow{font-size:10px;letter-spacing:.14em;color:var(--muted);margin-bottom:1.2rem}
-.hero-title{font-family:var(--fd);font-weight:900;font-size:clamp(56px,10vw,110px);color:var(--text);letter-spacing:-.04em;line-height:.9;margin-bottom:1rem}
+.hero-title{font-family:var(--fd);font-weight:900;font-size:clamp(52px,10vw,110px);color:var(--text);letter-spacing:-.04em;line-height:.9;margin-bottom:1rem}
 .hero-sub{font-size:13px;color:var(--text2);letter-spacing:.06em;margin-bottom:1.5rem}
 .hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .tag{font-size:10px;letter-spacing:.08em;padding:4px 10px;border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);background:var(--card)}
 
-/* TAB BAR */
+/* ── TAB BAR ── */
 .tab-bar{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);background:var(--surface)}
-.tab-btn{display:flex;align-items:center;gap:12px;padding:1.1rem 2rem;background:none;border:none;border-right:1px solid var(--border);color:var(--text2);cursor:pointer;text-align:left;transition:background .15s,color .15s;font-family:var(--fm)}
+.tab-btn{display:flex;align-items:center;gap:10px;padding:1rem 2rem;background:none;border:none;border-right:1px solid var(--border);color:var(--text2);cursor:pointer;text-align:left;transition:background .15s,color .15s;font-family:var(--fm)}
 .tab-btn:last-child{border-right:none}
 .tab-btn:hover{background:var(--card);color:var(--text)}
 .tab-btn.active{background:var(--card);color:var(--accent);border-bottom:2px solid var(--accent)}
-.tab-icon{font-size:15px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border2);border-radius:var(--r);flex-shrink:0}
+.tab-icon{font-size:14px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border2);border-radius:var(--r);flex-shrink:0}
 .tab-btn.active .tab-icon{background:rgba(200,168,75,.1);border-color:var(--accent2);color:var(--accent)}
 .tab-name{font-family:var(--fd);font-weight:700;font-size:13px}
 .tab-desc{font-size:10px;color:var(--muted);display:block;margin-top:1px}
 .tab-btn.active .tab-desc{color:var(--accent2)}
 
-/* PANELS */
-.tab-panel{display:none;padding:2.5rem 2rem;max-width:1200px;margin:0 auto}
+/* ── PANELS ── */
+.tab-panel{display:none;padding:2rem;max-width:1200px;margin:0 auto}
 .tab-panel.active{display:block}
 
-/* SECTION HEADER */
-.section-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
-.section-title{font-family:var(--fd);font-weight:800;font-size:26px;letter-spacing:-.02em;color:var(--text);margin-bottom:4px}
-.section-sub{font-size:12px;color:var(--text2)}
-
-/* CARD */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);padding:1.5rem;margin-bottom:1.5rem}
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);padding:1.4rem;margin-bottom:1.4rem}
 .card-label{font-size:9px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
 .card-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.section-title{font-family:var(--fd);font-weight:800;font-size:24px;letter-spacing:-.02em;color:var(--text);margin-bottom:3px}
+.section-sub{font-size:11px;color:var(--text2)}
 
-/* INPUTS */
+/* ── INPUTS & BUTTONS ── */
 .text-input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:10px 14px;color:var(--text);font-family:var(--fm);font-size:13px;outline:none;transition:border-color .15s;width:100%}
 .text-input:focus{border-color:var(--accent2)}
 .text-input::placeholder{color:var(--text3)}
-
-/* BUTTONS */
-.btn-primary{background:var(--accent);color:var(--bg);border:none;padding:10px 20px;border-radius:var(--r);font-family:var(--fd);font-weight:700;font-size:12px;cursor:pointer;letter-spacing:.02em;transition:background .15s,transform .1s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:var(--bg);border:none;padding:10px 18px;border-radius:var(--r);font-family:var(--fd);font-weight:700;font-size:12px;cursor:pointer;transition:background .15s,transform .1s;white-space:nowrap}
 .btn-primary:hover{background:var(--accent3)}
 .btn-primary:active{transform:scale(.97)}
-.btn-ghost{background:none;color:var(--text2);border:1px solid var(--border2);padding:9px 16px;border-radius:var(--r);font-family:var(--fm);font-size:12px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
+.btn-ghost{background:none;color:var(--text2);border:1px solid var(--border2);padding:9px 14px;border-radius:var(--r);font-family:var(--fm);font-size:12px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
 .btn-ghost:hover{background:var(--card2);color:var(--text)}
-.btn-danger{background:none;color:var(--red);border:1px solid var(--red-bg);padding:7px 14px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s}
-.btn-danger:hover{background:var(--red-bg)}
 
-/* ════════════════════════════════════
-   AUTH OVERLAY
-════════════════════════════════════ */
-.auth-overlay{position:fixed;inset:0;background:rgba(12,11,9,.96);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem}
-.auth-box{background:var(--card);border:1px solid var(--border2);border-radius:var(--rm);padding:2.5rem;width:100%;max-width:400px}
-.auth-logo{font-family:var(--fd);font-weight:900;font-size:32px;color:var(--accent);letter-spacing:-.03em;margin-bottom:.4rem;text-align:center}
-.auth-sub{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.06em;margin-bottom:2rem}
-.auth-tabs{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.5rem}
+/* ── AUTH OVERLAY ── */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,9,7,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem}
+.auth-box{background:var(--card);border:1px solid var(--border2);border-radius:var(--rm);padding:2.4rem;width:100%;max-width:380px}
+.auth-logo{font-family:var(--fd);font-weight:900;font-size:30px;color:var(--accent);letter-spacing:-.03em;margin-bottom:.3rem;text-align:center}
+.auth-tagline{font-size:10px;color:var(--muted);text-align:center;letter-spacing:.08em;margin-bottom:2rem}
+.auth-tabs{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.4rem}
 .auth-tab{flex:1;padding:9px;background:none;border:none;color:var(--text2);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s,color .15s;letter-spacing:.04em}
 .auth-tab.active{background:var(--card2);color:var(--accent)}
-.auth-field{margin-bottom:1rem}
-.auth-label{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:6px}
-.auth-error{font-size:10px;color:var(--red);margin-top:1rem;text-align:center;min-height:16px}
-.auth-hint{font-size:10px;color:var(--text3);text-align:center;margin-top:1rem;font-style:italic}
+.auth-field{margin-bottom:.9rem}
+.auth-label{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:5px}
+.auth-error{font-size:10px;color:var(--red);margin-top:.8rem;text-align:center;min-height:14px;line-height:1.4}
+.auth-footer{font-size:10px;color:var(--text3);text-align:center;margin-top:.8rem;font-style:italic}
 
-/* ════════════════════════════════════
-   RARITY CHECKER
-════════════════════════════════════ */
-.rarity-legend{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+/* ── BADGES ── */
 .badge{font-size:9px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;font-family:var(--fm)}
 .badge.legendary,.trait-badge.legendary{background:rgba(240,204,112,.15);color:var(--legendary);border:1px solid rgba(240,204,112,.3)}
 .badge.epic,.trait-badge.epic{background:rgba(192,122,255,.12);color:var(--epic);border:1px solid rgba(192,122,255,.25)}
 .badge.rare,.trait-badge.rare{background:rgba(90,172,255,.12);color:var(--rare);border:1px solid rgba(90,172,255,.25)}
 .badge.uncommon,.trait-badge.uncommon{background:rgba(90,223,138,.1);color:var(--uncommon);border:1px solid rgba(90,223,138,.2)}
 .badge.common,.trait-badge.common{background:rgba(160,145,110,.1);color:var(--common);border:1px solid rgba(160,145,110,.2)}
-.lookup-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.lookup-row .text-input{max-width:260px}
-.lookup-hint{font-size:10px;color:var(--text3);margin-top:10px;font-style:italic}
-.results-grid{display:grid;grid-template-columns:260px 1fr;gap:1.5rem;margin-bottom:1.5rem}
-@media(max-width:700px){.results-grid{grid-template-columns:1fr}}
+
+/* ── RARITY ── */
+.rarity-legend{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lookup-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lookup-row .text-input{max-width:240px}
+.lookup-hint{font-size:10px;color:var(--text3);margin-top:8px;font-style:italic}
+.results-grid{display:grid;grid-template-columns:250px 1fr;gap:1.2rem;margin-bottom:1.4rem}
+@media(max-width:680px){.results-grid{grid-template-columns:1fr}}
 .goblyn-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden}
 .goblyn-art{aspect-ratio:1;background:var(--card2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden}
-.goblyn-art img{width:100%;height:100%;object-fit:cover}
-.goblyn-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px}
-.goblyn-glyph{font-size:60px;color:var(--border2);animation:pulse 3s ease-in-out infinite}
+.goblyn-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px}
+.goblyn-glyph{font-size:56px;color:var(--border2);animation:pulse 3s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
-.goblyn-id-art{font-family:var(--fd);font-weight:800;font-size:16px;color:var(--text2)}
-.goblyn-meta{padding:1.2rem}
-.goblyn-name{font-family:var(--fd);font-weight:800;font-size:16px;color:var(--text);margin-bottom:.8rem}
-.rarity-score-label{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
-.rarity-score-value{font-family:var(--fd);font-weight:900;font-size:32px;color:var(--accent);letter-spacing:-.03em;line-height:1;margin-bottom:.8rem}
-.rarity-rank-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:.8rem}
-.rank-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:7px;text-align:center}
+.goblyn-id-art{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--text2)}
+.goblyn-meta{padding:1.1rem}
+.goblyn-name{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--text);margin-bottom:.7rem}
+.rs-label{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:1px}
+.rs-value{font-family:var(--fd);font-weight:900;font-size:30px;color:var(--accent);line-height:1;margin-bottom:.7rem}
+.rank-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:.7rem}
+.rank-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px;text-align:center}
 .rank-label{font-size:8px;letter-spacing:.1em;color:var(--text3);display:block;margin-bottom:2px;text-transform:uppercase}
-.rank-value{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
-.rarity-bar-track{height:4px;background:var(--surface);border-radius:2px;overflow:hidden;margin-bottom:.8rem}
-.rarity-bar-fill{height:100%;border-radius:2px;width:0%;transition:width .8s cubic-bezier(.16,1,.3,1)}
-.btn-share{width:100%;background:none;color:var(--accent);border:1px solid var(--accent2);padding:9px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s;letter-spacing:.04em}
+.rank-value{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text)}
+.bar-track{height:4px;background:var(--surface);border-radius:2px;overflow:hidden;margin-bottom:.7rem}
+.bar-fill{height:100%;border-radius:2px;width:0%;transition:width .8s cubic-bezier(.16,1,.3,1)}
+.btn-share{width:100%;background:none;color:var(--accent);border:1px solid var(--accent2);padding:8px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s}
 .btn-share:hover{background:rgba(200,168,75,.08)}
 .traits-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden}
-.traits-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--border);background:var(--surface)}
-.traits-title{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
+.traits-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.traits-title{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text)}
 .traits-count{font-size:10px;color:var(--muted)}
-.traits-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--border)}
-.trait-item{background:var(--card);padding:.9rem;display:flex;flex-direction:column;gap:5px;transition:background .1s}
+.traits-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--border)}
+.trait-item{background:var(--card);padding:.85rem;display:flex;flex-direction:column;gap:5px;transition:background .1s}
 .trait-item:hover{background:var(--card2)}
-.trait-category{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-.trait-value{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
-.trait-rarity-bar{height:2px;background:var(--surface);border-radius:1px;overflow:hidden}
-.trait-rarity-fill{height:100%;border-radius:1px}
+.trait-category{font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.trait-value{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text)}
+.trait-bar{height:2px;background:var(--surface);border-radius:1px;overflow:hidden}
+.trait-bar-fill{height:100%;border-radius:1px}
 .trait-pct{font-size:9px;color:var(--text2);display:flex;justify-content:space-between;align-items:center}
-.trait-badge{font-size:8px;padding:1px 5px;border-radius:2px;letter-spacing:.06em}
-.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;margin-bottom:1.5rem}
-.stat-card{background:var(--card);padding:1.1rem;transition:background .1s}
+.trait-badge{font-size:8px;padding:1px 5px;border-radius:2px;letter-spacing:.05em}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;margin-bottom:1.4rem}
+.stat-card{background:var(--card);padding:1rem;transition:background .1s}
 .stat-card:hover{background:var(--card2)}
 .stat-label{font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:5px}
-.stat-value{font-family:var(--fd);font-weight:800;font-size:18px;color:var(--text)}
-.chart-bars{display:flex;align-items:flex-end;gap:10px;height:100px;margin-bottom:8px}
-.chart-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.stat-value{font-family:var(--fd);font-weight:800;font-size:17px;color:var(--text)}
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-bottom:6px}
+.chart-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
 .chart-bar-inner{width:100%;border-radius:2px 2px 0 0;min-height:4px}
-.chart-bar-label{font-size:9px;color:var(--text3);text-align:center}
-.chart-axis{display:flex;justify-content:space-between;font-size:9px;color:var(--text3);border-top:1px solid var(--border);padding-top:8px}
+.chart-bar-label{font-size:8px;color:var(--text3);text-align:center}
+.chart-axis{display:flex;justify-content:space-between;font-size:9px;color:var(--text3);border-top:1px solid var(--border);padding-top:6px}
 
-/* ════════════════════════════════════
-   THE ORACLE — PREDICTION MARKET
-════════════════════════════════════ */
+/* ── VERIFY CARD ── */
+.verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;margin-top:.8rem}
+@media(max-width:600px){.verify-grid{grid-template-columns:1fr}}
+.verify-step{background:var(--card);padding:1rem}
+.verify-num{font-family:var(--fd);font-weight:900;font-size:22px;color:var(--accent);margin-bottom:4px}
+.verify-title{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px}
+.verify-desc{font-size:11px;color:var(--text2);line-height:1.6}
+.verify-link{color:var(--accent);text-decoration:none;font-size:10px;letter-spacing:.04em;display:inline-block;margin-top:4px}
+.verify-link:hover{color:var(--accent3)}
+.formula-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.8rem;margin-top:.8rem;font-size:11px;color:var(--text2);font-family:var(--fm);line-height:1.8}
+.formula-box span{color:var(--accent)}
 
-/* POINTS BANNER */
-.points-banner{background:var(--card2);border:1px solid var(--border2);border-radius:var(--rm);padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.points-left{display:flex;align-items:center;gap:16px}
-.points-avatar{width:40px;height:40px;border-radius:50%;background:rgba(200,168,75,.15);border:1px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;font-size:16px;color:var(--accent);text-transform:uppercase;flex-shrink:0}
-.points-info{}
-.points-username{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--text)}
-.points-balance{font-size:10px;color:var(--text2);margin-top:1px}
-.points-balance span{color:var(--accent);font-weight:700;font-family:var(--fd)}
-.points-right{display:flex;align-items:center;gap:10px}
-.points-stat{text-align:center}
-.points-stat-val{font-family:var(--fd);font-weight:800;font-size:20px;color:var(--text)}
-.points-stat-label{font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+/* ── ORACLE / PREDICTION ── */
+.pts-banner{background:var(--card2);border:1px solid var(--border2);border-radius:var(--rm);padding:1.1rem 1.4rem;margin-bottom:1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pts-left{display:flex;align-items:center;gap:12px}
+.pts-avatar{width:38px;height:38px;border-radius:50%;background:rgba(200,168,75,.12);border:1px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:900;font-size:15px;color:var(--accent);text-transform:uppercase;flex-shrink:0}
+.pts-name{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
+.pts-bal{font-size:10px;color:var(--text2);margin-top:1px}
+.pts-bal span{color:var(--accent);font-weight:700;font-family:var(--fd)}
+.pts-right{display:flex;align-items:center;gap:12px}
+.pts-stat{text-align:center}
+.pts-stat-val{font-family:var(--fd);font-weight:800;font-size:18px;color:var(--text)}
+.pts-stat-lbl{font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.divider-v{width:1px;height:30px;background:var(--border)}
 
-/* PREDICTIONS GRID */
-.predictions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;margin-bottom:1.5rem}
+/* COUNTDOWN */
+.countdown-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.7rem 1.1rem;margin-bottom:1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.cd-label{font-size:10px;color:var(--muted);letter-spacing:.08em}
+.cd-timer{font-family:var(--fd);font-weight:800;font-size:14px;color:var(--accent);letter-spacing:.04em}
+.cd-reset{font-size:9px;color:var(--text3);letter-spacing:.06em}
+
+/* PREDICTION CARDS */
+.preds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;margin-bottom:1.4rem}
 .pred-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;transition:border-color .15s}
 .pred-card:hover{border-color:var(--border2)}
-.pred-card.voted{border-color:var(--accent2)}
-.pred-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);background:var(--surface)}
-.pred-category{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
-.pred-question{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--text);line-height:1.3}
-.pred-body{padding:1.2rem}
-.pred-options{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
-.pred-option{position:relative;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .15s}
-.pred-option:hover{border-color:var(--accent2)}
-.pred-option.selected{border-color:var(--accent);background:rgba(200,168,75,.06)}
-.pred-option.correct{border-color:var(--green);background:rgba(90,158,74,.08)}
-.pred-option.wrong{border-color:var(--red);background:rgba(176,64,64,.06);opacity:.6}
-.pred-option-bar{position:absolute;top:0;left:0;height:100%;background:rgba(200,168,75,.06);transition:width .6s ease;z-index:0}
-.pred-option-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:9px 12px}
-.pred-option-label{font-size:12px;color:var(--text)}
-.pred-option-pct{font-size:10px;color:var(--text2);font-family:var(--fd);font-weight:700}
-.pred-option-check{font-size:10px;margin-left:6px}
-.pred-meta{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--text3)}
-.pred-voters{letter-spacing:.02em}
-.pred-points{color:var(--accent);font-family:var(--fd);font-weight:700}
-.pred-bet-row{display:flex;gap:8px;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-.pred-bet-input{flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:8px 10px;color:var(--text);font-family:var(--fm);font-size:12px;outline:none}
+.pred-card.locked{border-color:var(--accent2)}
+.pred-head{padding:.9rem 1.1rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.pred-cat{font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+.pred-q{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text);line-height:1.3}
+.pred-body{padding:1.1rem}
+.pred-opts{display:flex;flex-direction:column;gap:5px;margin-bottom:.9rem}
+.pred-opt{position:relative;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .15s,opacity .15s}
+.pred-opt:hover:not(.disabled){border-color:var(--accent2)}
+.pred-opt.selected{border-color:var(--accent)}
+.pred-opt.disabled{cursor:default;pointer-events:none}
+.pred-opt-bar{position:absolute;top:0;left:0;height:100%;background:rgba(200,168,75,.07);z-index:0;transition:width .5s ease}
+.pred-opt-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:8px 10px}
+.pred-opt-lbl{font-size:11px;color:var(--text)}
+.pred-opt-right{display:flex;align-items:center;gap:5px}
+.pred-opt-pct{font-size:10px;color:var(--text2);font-family:var(--fd);font-weight:700}
+.pred-opt-check{color:var(--accent);font-size:10px}
+.pred-bet-row{display:flex;gap:6px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.pred-bet-input{flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:7px 10px;color:var(--text);font-family:var(--fm);font-size:12px;outline:none}
 .pred-bet-input:focus{border-color:var(--accent2)}
-.pred-bet-label{font-size:10px;color:var(--text3);white-space:nowrap}
-.pred-voted-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;color:var(--accent);background:rgba(200,168,75,.1);border:1px solid var(--accent2);border-radius:2px;padding:3px 8px;letter-spacing:.06em;margin-top:8px}
+.pred-bet-lbl{font-size:10px;color:var(--text3);white-space:nowrap}
+.pred-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--text3)}
+.pred-pts-reward{color:var(--accent);font-family:var(--fd);font-weight:700}
+.pred-lock-btn{width:100%;background:none;color:var(--accent);border:1px solid var(--accent2);padding:8px;border-radius:var(--r);font-family:var(--fm);font-size:11px;cursor:pointer;transition:background .15s;margin-top:8px;letter-spacing:.04em}
+.pred-lock-btn:hover{background:rgba(200,168,75,.08)}
+.pred-locked-badge{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--accent);background:rgba(200,168,75,.08);border:1px solid var(--accent2);border-radius:2px;padding:4px 8px;letter-spacing:.06em;margin-top:8px}
 
 /* LEADERBOARD */
-.leaderboard-wrap{margin-bottom:1.5rem}
-.lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border);transition:background .1s}
+.lb-empty{text-align:center;padding:3rem;color:var(--text3);font-style:italic;font-size:12px}
+.lb-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);transition:background .1s}
 .lb-row:last-child{border-bottom:none}
 .lb-row:hover{background:var(--card2)}
-.lb-row.me{background:rgba(200,168,75,.05);border-left:2px solid var(--accent)}
-.lb-rank{font-family:var(--fd);font-weight:800;font-size:14px;color:var(--text3);width:28px;text-align:center;flex-shrink:0}
-.lb-rank.top1{color:var(--legendary)}
-.lb-rank.top2{color:var(--common)}
-.lb-rank.top3{color:var(--amber)}
-.lb-avatar{width:30px;height:30px;border-radius:50%;background:var(--card2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text2);flex-shrink:0;text-transform:uppercase}
-.lb-name{flex:1;font-family:var(--fd);font-weight:700;font-size:13px;color:var(--text)}
-.lb-you{font-size:8px;color:var(--accent);background:rgba(200,168,75,.1);border:1px solid var(--accent2);border-radius:2px;padding:1px 5px;margin-left:6px;letter-spacing:.06em}
-.lb-stats{text-align:right}
-.lb-points{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--accent)}
+.lb-row.me{background:rgba(200,168,75,.04);border-left:2px solid var(--accent)}
+.lb-rank{font-family:var(--fd);font-weight:800;font-size:13px;color:var(--text3);width:26px;text-align:center;flex-shrink:0}
+.lb-rank.r1{color:var(--legendary)}
+.lb-rank.r2{color:var(--common)}
+.lb-rank.r3{color:var(--amber)}
+.lb-av{width:28px;height:28px;border-radius:50%;background:var(--card2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:11px;color:var(--text2);flex-shrink:0;text-transform:uppercase}
+.lb-name{flex:1;font-family:var(--fd);font-weight:700;font-size:12px;color:var(--text)}
+.lb-you{font-size:8px;color:var(--accent);background:rgba(200,168,75,.1);border:1px solid var(--accent2);border-radius:2px;padding:1px 5px;margin-left:5px;letter-spacing:.06em}
+.lb-right{text-align:right}
+.lb-pts{font-family:var(--fd);font-weight:800;font-size:14px;color:var(--accent)}
 .lb-detail{font-size:9px;color:var(--text3);margin-top:1px}
-.lb-medal{font-size:16px;width:24px;text-align:center}
 
-/* TEAM SECTION */
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
-.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);padding:1.2rem;transition:border-color .15s}
-.team-card:hover{border-color:var(--border2)}
-.team-avatar{width:52px;height:52px;border-radius:50%;background:rgba(200,168,75,.1);border:1px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:900;font-size:20px;color:var(--accent);margin-bottom:.8rem;text-transform:uppercase}
-.team-name{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--text);margin-bottom:2px}
-.team-role{font-size:10px;color:var(--accent);letter-spacing:.06em;margin-bottom:.6rem}
+/* WINNER ANNOUNCE */
+.winner-card{background:linear-gradient(135deg,rgba(200,168,75,.08) 0%,rgba(200,168,75,.02) 100%);border:1px solid var(--accent2);border-radius:var(--rm);padding:1.4rem;margin-bottom:1.4rem}
+.winner-header{display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
+.winner-icon{font-size:20px}
+.winner-title{font-family:var(--fd);font-weight:800;font-size:14px;color:var(--accent)}
+.winner-sub{font-size:10px;color:var(--accent2)}
+.winner-body{font-size:12px;color:var(--text2);line-height:1.7}
+.winner-name{color:var(--accent);font-weight:700;font-family:var(--fd)}
+.winner-loading{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);font-style:italic}
+.spinner{width:14px;height:14px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-bottom:1.4rem}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rm);padding:1.1rem}
+.team-av{width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.1);border:1px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:900;font-size:17px;color:var(--accent);margin-bottom:.7rem;text-transform:uppercase}
+.team-name{font-family:var(--fd);font-weight:800;font-size:13px;color:var(--text);margin-bottom:1px}
+.team-role{font-size:9px;color:var(--accent);letter-spacing:.06em;margin-bottom:.5rem}
 .team-bio{font-size:11px;color:var(--text2);line-height:1.6}
 
 /* TOAST */
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--card2);border:1px solid var(--border2);border-radius:var(--rm);padding:.8rem 1.2rem;font-size:12px;color:var(--text);z-index:300;transform:translateY(100px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;max-width:300px}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--card2);border:1px solid var(--border2);border-radius:var(--rm);padding:.7rem 1rem;font-size:12px;color:var(--text);z-index:400;transform:translateY(80px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;max-width:280px;line-height:1.5}
 .toast.show{transform:translateY(0);opacity:1}
-.toast.success{border-color:var(--green);color:var(--green)}
-.toast.error{border-color:var(--red);color:var(--red)}
+.toast.ok{border-color:var(--green);color:var(--green)}
+.toast.err{border-color:var(--red);color:var(--red)}
 
 /* FOOTER */
-.footer{border-top:1px solid var(--border);background:var(--surface);padding:2rem;margin-top:2rem}
+.footer{border-top:1px solid var(--border);background:var(--surface);padding:1.5rem 2rem;margin-top:2rem}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.footer-brand{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--accent)}
-.footer-links{display:flex;gap:1.5rem}
-.footer-links a{font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:.04em;transition:color .15s}
+.footer-brand{font-family:var(--fd);font-weight:700;font-size:12px;color:var(--accent)}
+.footer-links{display:flex;gap:1.2rem}
+.footer-links a{font-size:11px;color:var(--text2);text-decoration:none;transition:color .15s}
 .footer-links a:hover{color:var(--accent)}
 .footer-note{font-size:10px;color:var(--text3);font-style:italic}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--surface)}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.results-grid,.pred-card{animation:fadeInUp .3s ease}
-.divider{height:1px;background:var(--border);margin:1.5rem 0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.results-grid,.preds-grid,.pred-card{animation:fadeUp .3s ease}
+.roadmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden}
+.rm-cell{background:var(--card);padding:1rem}
+.rm-phase{font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.rm-title{font-family:var(--fd);font-weight:700;font-size:12px;margin-bottom:4px}
+.rm-desc{font-size:11px;color:var(--text2);line-height:1.6}
 </style>
 </head>
 <body>
 
-<!-- AUTH OVERLAY -->
+<!-- ══════ AUTH OVERLAY ══════ -->
 <div class="auth-overlay" id="auth-overlay">
   <div class="auth-box">
     <div class="auth-logo">&#x25C6; den</div>
-    <div class="auth-sub">sign in to enter the den</div>
+    <div class="auth-tagline">predict. compete. be weird.</div>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">sign in</button>
-      <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">join</button>
+      <button class="auth-tab active" id="atab-join" onclick="switchAuthTab('join')">join the den</button>
+      <button class="auth-tab" id="atab-in" onclick="switchAuthTab('in')">sign in</button>
     </div>
-    <div id="auth-login">
-      <div class="auth-field"><label class="auth-label">username</label><input class="text-input" id="login-user" placeholder="your goblyn name" autocomplete="username"/></div>
-      <div class="auth-field"><label class="auth-label">password</label><input class="text-input" id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password"/></div>
-      <button class="btn-primary" style="width:100%;margin-top:.5rem" onclick="doLogin()">enter the den &#x2192;</button>
+
+    <!-- JOIN -->
+    <div id="auth-join">
+      <div class="auth-field"><label class="auth-label">pick your goblyn name</label><input class="text-input" id="j-user" placeholder="swampwitch, voidcrawler..." autocomplete="username"/></div>
+      <div class="auth-field"><label class="auth-label">password</label><input class="text-input" id="j-pass" type="password" placeholder="at least 6 characters" autocomplete="new-password"/></div>
+      <div class="auth-field"><label class="auth-label">confirm password</label><input class="text-input" id="j-pass2" type="password" placeholder="repeat it" autocomplete="new-password"/></div>
+      <button class="btn-primary" style="width:100%;margin-top:.4rem" onclick="doJoin()">claim your spot &#x2192;</button>
     </div>
-    <div id="auth-register" style="display:none">
-      <div class="auth-field"><label class="auth-label">username</label><input class="text-input" id="reg-user" placeholder="pick your goblyn name" autocomplete="username"/></div>
-      <div class="auth-field"><label class="auth-label">password</label><input class="text-input" id="reg-pass" type="password" placeholder="choose a password" autocomplete="new-password"/></div>
-      <div class="auth-field"><label class="auth-label">confirm password</label><input class="text-input" id="reg-pass2" type="password" placeholder="repeat it" autocomplete="new-password"/></div>
-      <button class="btn-primary" style="width:100%;margin-top:.5rem" onclick="doRegister()">claim your spot &#x2192;</button>
+
+    <!-- SIGN IN -->
+    <div id="auth-in" style="display:none">
+      <div class="auth-field"><label class="auth-label">goblyn name</label><input class="text-input" id="i-user" placeholder="your username" autocomplete="username"/></div>
+      <div class="auth-field"><label class="auth-label">password</label><input class="text-input" id="i-pass" type="password" placeholder="••••••••" autocomplete="current-password"/></div>
+      <button class="btn-primary" style="width:100%;margin-top:.4rem" onclick="doSignIn()">enter the den &#x2192;</button>
     </div>
-    <div class="auth-error" id="auth-error"></div>
-    <div class="auth-hint">5,000 points on signup &middot; predict. compete. be weird.</div>
+
+    <div class="auth-error" id="auth-err"></div>
+    <div class="auth-footer">5,000 pts on signup &middot; one account per username &middot; must join first</div>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- ══════ NAV ══════ -->
 <nav class="nav">
   <a href="https://goblynz.xyz" target="_blank" class="nav-logo">&#x25C6; goblynz den</a>
   <div class="nav-links">
@@ -288,16 +315,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px
     <a href="#oracle" class="nav-link" data-tab="oracle">the oracle</a>
   </div>
   <div class="nav-right">
-    <span class="nav-user" id="nav-user-info" style="display:none">
-      <span id="nav-username"></span>
-      <span class="nav-points" id="nav-points">0 pts</span>
+    <span class="nav-user" id="nav-user" style="display:none">
+      <span id="nav-uname"></span>
+      <span class="nav-pts" id="nav-pts"></span>
     </span>
-    <button class="btn-ghost" id="signout-btn" style="display:none;font-size:11px;padding:6px 12px" onclick="doSignout()">sign out</button>
-    <a href="https://goblynz.xyz/mint.html" target="_blank" class="nav-cta">mint april 25 &#x2192;</a>
+    <button class="btn-sm" id="nav-signout" style="display:none" onclick="doSignOut()">sign out</button>
+    <a href="https://goblynz.xyz/mint.html" target="_blank" class="nav-cta">mint apr 25 &#x2192;</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ══════ HERO ══════ -->
 <header class="hero">
   <div class="hero-eyebrow">community tools &middot; unofficial fan build</div>
   <h1 class="hero-title">the den</h1>
@@ -307,27 +334,27 @@ body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px
     <span class="tag">ethereum &#x27E0;</span>
     <span class="tag">free mint</span>
     <span class="tag">13 hidden 1/1s</span>
-    <span class="tag">april 25</span>
+    <span class="tag">april 25 · 14:00 utc</span>
   </div>
 </header>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="rarity">
     <span class="tab-icon">&#x25B2;</span>
-    <span><span class="tab-name">rarity checker</span><span class="tab-desc">analyze your goblynz traits</span></span>
+    <span><span class="tab-name">rarity checker</span><span class="tab-desc">simulate &amp; verify trait scores</span></span>
   </button>
   <button class="tab-btn" data-tab="oracle">
     <span class="tab-icon">&#x25C6;</span>
-    <span><span class="tab-name">the oracle</span><span class="tab-desc">predict. bet. climb the board</span></span>
+    <span><span class="tab-name">the oracle</span><span class="tab-desc">predict · bet · climb the board</span></span>
   </button>
 </div>
 
-<!-- ═══ RARITY TAB ═══ -->
+<!-- ══════ RARITY TAB ══════ -->
 <section id="rarity" class="tab-panel active">
   <div class="section-header">
     <div>
       <h2 class="section-title">rarity checker</h2>
-      <p class="section-sub">enter a token id to see how rare your goblynz is</p>
+      <p class="section-sub">simulate any token id &middot; scores are fully verifiable on-chain</p>
     </div>
     <div class="rarity-legend">
       <span class="badge legendary">legendary</span>
@@ -337,44 +364,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px
       <span class="badge common">common</span>
     </div>
   </div>
+
   <div class="card">
     <div class="card-label">token lookup</div>
     <div class="lookup-row">
-      <input type="number" id="token-id-input" class="text-input" placeholder="enter token id  e.g. 0420" min="1" max="4800"/>
-      <button class="btn-primary" id="lookup-btn">analyze &#x2197;</button>
-      <button class="btn-ghost" id="random-btn">random goblynz</button>
+      <input type="number" id="token-input" class="text-input" placeholder="enter token id  e.g. 0420" min="1" max="4800"/>
+      <button class="btn-primary" onclick="analyzeToken(document.getElementById('token-input').value)">analyze &#x2197;</button>
+      <button class="btn-ghost" onclick="analyzeToken(Math.floor(Math.random()*4800)+1)">random</button>
     </div>
-    <p class="lookup-hint">* uses simulated trait data until contract reveals april 25. same token id always gives same result.</p>
+    <p class="lookup-hint">* pre-reveal: scores are simulated with the same seeded algorithm that will run on real metadata. post-reveal: fetches live from arweave.</p>
   </div>
+
   <div class="results-grid" id="results-panel" style="display:none">
     <div class="goblyn-card">
       <div class="goblyn-art" id="goblyn-art">
-        <div class="goblyn-placeholder" id="goblyn-placeholder">
+        <div class="goblyn-placeholder" id="goblyn-ph">
           <div class="goblyn-glyph">&#x25C6;</div>
-          <div class="goblyn-id-art" id="goblyn-id-display">#????</div>
+          <div class="goblyn-id-art" id="g-id-display">#????</div>
         </div>
       </div>
       <div class="goblyn-meta">
-        <div class="goblyn-name" id="goblyn-name">goblynz #????</div>
-        <div class="rarity-score-label">rarity score</div>
-        <div class="rarity-score-value" id="rarity-score">—</div>
-        <div class="rarity-rank-wrap">
-          <div class="rank-item"><span class="rank-label">rank</span><span class="rank-value" id="rarity-rank">—</span></div>
-          <div class="rank-item"><span class="rank-label">top</span><span class="rank-value" id="rarity-percentile">—</span></div>
-          <div class="rank-item"><span class="rank-label">tier</span><span class="rank-value" id="rarity-tier">—</span></div>
+        <div class="goblyn-name" id="g-name">goblynz #????</div>
+        <div class="rs-label">rarity score</div>
+        <div class="rs-value" id="g-score">—</div>
+        <div class="rank-wrap">
+          <div class="rank-item"><span class="rank-label">rank</span><span class="rank-value" id="g-rank">—</span></div>
+          <div class="rank-item"><span class="rank-label">top</span><span class="rank-value" id="g-pct">—</span></div>
+          <div class="rank-item"><span class="rank-label">tier</span><span class="rank-value" id="g-tier">—</span></div>
         </div>
-        <div class="rarity-bar-track"><div class="rarity-bar-fill" id="rarity-bar"></div></div>
+        <div class="bar-track"><div class="bar-fill" id="g-bar"></div></div>
         <button class="btn-share" id="share-btn">copy share card &#x2197;</button>
       </div>
     </div>
     <div class="traits-panel">
       <div class="traits-header">
         <span class="traits-title">trait breakdown</span>
-        <span class="traits-count" id="trait-count">— traits</span>
+        <span class="traits-count" id="trait-count">—</span>
       </div>
       <div class="traits-list" id="traits-list"></div>
     </div>
   </div>
+
   <div class="stats-row">
     <div class="stat-card"><div class="stat-label">supply</div><div class="stat-value">4,800</div></div>
     <div class="stat-card"><div class="stat-label">hidden 1/1s</div><div class="stat-value">13</div></div>
@@ -383,126 +413,126 @@ body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px
     <div class="stat-card"><div class="stat-label">storage</div><div class="stat-value">arweave</div></div>
     <div class="stat-card"><div class="stat-label">chain</div><div class="stat-value">ethereum</div></div>
   </div>
+
   <div class="card">
     <div class="card-label">rarity distribution</div>
     <div class="chart-bars" id="rarity-chart"></div>
     <div class="chart-axis"><span>legendary</span><span>epic</span><span>rare</span><span>uncommon</span><span>common</span></div>
   </div>
+
+  <!-- HOW RARITY IS CALCULATED & VERIFIED -->
+  <div class="card">
+    <div class="card-label">how rarity is calculated &amp; how to verify it</div>
+    <p style="font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:.8rem">
+      rarity scores use the industry-standard <strong style="color:var(--text)">statistical rarity method</strong>: each trait's score is
+      <code style="background:var(--surface);padding:1px 5px;border-radius:2px;font-size:10px">100 / trait_supply_percentage</code>.
+      rarer traits score higher. a token's total score is the sum of all its trait scores.
+      the same formula is used by rarity.tools and rarity sniper.
+    </p>
+    <div class="formula-box">
+      trait score &nbsp;= &nbsp;<span>100 ÷ % of collection that has this trait</span><br/>
+      token score &nbsp;= &nbsp;<span>sum of all 8 trait scores</span><br/>
+      rank &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= &nbsp;<span>position when all 4,800 tokens sorted by score (desc)</span>
+    </div>
+    <div class="verify-grid" style="margin-top:1rem">
+      <div class="verify-step">
+        <div class="verify-num">01</div>
+        <div class="verify-title">read the contract</div>
+        <div class="verify-desc">the goblynz smart contract is publicly deployed on ethereum mainnet. all token metadata is stored permanently on arweave — not a server we control.</div>
+        <a class="verify-link" href="https://etherscan.io/address/0x131e64936a9ddf8fb94967d8c316a16c7fc7d0c2" target="_blank">view contract on etherscan &#x2197;</a>
+      </div>
+      <div class="verify-step">
+        <div class="verify-num">02</div>
+        <div class="verify-title">fetch any token's metadata</div>
+        <div class="verify-desc">after reveal, call <code style="font-size:10px;background:var(--surface);padding:1px 4px;border-radius:2px">tokenURI(id)</code> on the contract to get the arweave URL. open it — you'll see the raw JSON with every trait and its value.</div>
+        <a class="verify-link" href="https://arweave.net" target="_blank">arweave gateway &#x2197;</a>
+      </div>
+      <div class="verify-step">
+        <div class="verify-num">03</div>
+        <div class="verify-title">compute the score yourself</div>
+        <div class="verify-desc">take each trait value, look up what % of the collection has it, apply <code style="font-size:10px;background:var(--surface);padding:1px 4px;border-radius:2px">100/pct</code>, add all 8 up. you'll get exactly what this app shows. no black box.</div>
+      </div>
+      <div class="verify-step">
+        <div class="verify-num">04</div>
+        <div class="verify-title">cross-check with rarity tools</div>
+        <div class="verify-desc">once the collection is indexed, rarity.tools and rarity sniper will show the same scores. if they differ, the formula and source data will be published openly for audit.</div>
+        <a class="verify-link" href="https://rarity.tools" target="_blank">rarity.tools &#x2197;</a>
+      </div>
+    </div>
+    <p style="font-size:10px;color:var(--text3);margin-top:1rem;font-style:italic">
+      pre-reveal: scores are simulated using a seeded deterministic algorithm — same token id always gives the same result. they are illustrative, not final. final scores are computed from real on-chain metadata after april 25 reveal.
+    </p>
+  </div>
 </section>
 
-<!-- ═══ ORACLE TAB ═══ -->
+<!-- ══════ ORACLE TAB ══════ -->
 <section id="oracle" class="tab-panel">
 
   <!-- points banner -->
-  <div class="points-banner" id="points-banner">
-    <div class="points-left">
-      <div class="points-avatar" id="pb-avatar">?</div>
-      <div class="points-info">
-        <div class="points-username" id="pb-username">goblyn</div>
-        <div class="points-balance">balance: <span id="pb-balance">5,000</span> pts</div>
+  <div class="pts-banner" id="pts-banner">
+    <div class="pts-left">
+      <div class="pts-avatar" id="pb-av">?</div>
+      <div>
+        <div class="pts-name" id="pb-name">—</div>
+        <div class="pts-bal">balance: <span id="pb-bal">5,000</span> pts</div>
       </div>
     </div>
-    <div class="points-right">
-      <div class="points-stat">
-        <div class="points-stat-val" id="pb-correct">0</div>
-        <div class="points-stat-label">correct</div>
-      </div>
-      <div style="width:1px;height:32px;background:var(--border)"></div>
-      <div class="points-stat">
-        <div class="points-stat-val" id="pb-predictions">0</div>
-        <div class="points-stat-label">predictions</div>
-      </div>
-      <div style="width:1px;height:32px;background:var(--border)"></div>
-      <div class="points-stat">
-        <div class="points-stat-val" id="pb-streak">0</div>
-        <div class="points-stat-label">streak</div>
-      </div>
+    <div class="pts-right">
+      <div class="pts-stat"><div class="pts-stat-val" id="pb-bets">0</div><div class="pts-stat-lbl">bets placed</div></div>
+      <div class="divider-v"></div>
+      <div class="pts-stat"><div class="pts-stat-val" id="pb-won">0</div><div class="pts-stat-lbl">rounds won</div></div>
     </div>
   </div>
+
+  <!-- countdown -->
+  <div class="countdown-bar">
+    <span class="cd-label">&#x25C6; next round reset</span>
+    <span class="cd-timer" id="cd-timer">—</span>
+    <span class="cd-reset" id="cd-reset-info">questions + leaderboard refresh every 6 hours</span>
+  </div>
+
+  <!-- winner announcement -->
+  <div id="winner-section" style="display:none"></div>
 
   <!-- predictions -->
   <div class="section-header">
     <div>
       <h2 class="section-title">the oracle</h2>
-      <p class="section-sub">predict what happens when 4,800 goblynz drop on april 25 &middot; bet points &middot; climb the board</p>
+      <p class="section-sub">predict what happens when 4,800 goblynz drop · one bet per question · locks in forever</p>
     </div>
-    <span class="badge rare" style="padding:6px 12px;font-size:10px">resolves at reveal</span>
+    <span class="badge rare" style="padding:5px 10px;font-size:10px" id="round-badge">round 1</span>
   </div>
-
-  <div class="predictions-grid" id="predictions-grid"></div>
-
-  <div class="divider"></div>
+  <div class="preds-grid" id="preds-grid"></div>
 
   <!-- leaderboard -->
-  <div class="section-header">
+  <div class="section-header" style="margin-top:1rem">
     <div>
       <h2 class="section-title">leaderboard</h2>
-      <p class="section-sub">daily rankings &middot; resets midnight utc</p>
+      <p class="section-sub">ranked by total points · reshuffled by the oracle every 6 hours</p>
     </div>
-    <span id="lb-updated" style="font-size:10px;color:var(--text3)"></span>
+    <span id="lb-stamp" style="font-size:10px;color:var(--text3)"></span>
   </div>
-  <div class="card leaderboard-wrap" id="leaderboard"></div>
-
-  <div class="divider"></div>
+  <div class="card" id="lb-card"></div>
 
   <!-- the council -->
-  <div class="section-header">
-    <div>
-      <h2 class="section-title">the council</h2>
-      <p class="section-sub">the team behind goblynz</p>
-    </div>
+  <div class="section-header" style="margin-top:1rem">
+    <div><h2 class="section-title">the council</h2><p class="section-sub">the team behind goblynz</p></div>
   </div>
   <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">MB</div>
-      <div class="team-name">magicburp</div>
-      <div class="team-role">head goblyn &middot; artist &middot; developer</div>
-      <div class="team-bio">the brain behind goblynz. every single trait across all 4,800 pieces drawn by hand — no AI, no algorithm. just photoshop brushes and "lot's of coffee." also the developer building the tools.</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">RR</div>
-      <div class="team-name">rorschach</div>
-      <div class="team-role">den master &middot; mod lead</div>
-      <div class="team-bio">keeps the den in order. runs community moderation and makes sure the misfits stay weird without burning the place down. the backbone of day-to-day ops.</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">SS</div>
-      <div class="team-name">ssheyii</div>
-      <div class="team-role">collab manager</div>
-      <div class="team-bio">the one building bridges. responsible for the 2,100 collab gtd spots and the partnerships that got goblynz in front of the right communities before launch.</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">SI</div>
-      <div class="team-name">sinney</div>
-      <div class="team-role">goblyn elder</div>
-      <div class="team-bio">the wise one. part of the founding circle shaping the long-term direction of the goblynz brand — from the vault strategy to the stakehodler model.</div>
-    </div>
+    <div class="team-card"><div class="team-av">MB</div><div class="team-name">magicburp</div><div class="team-role">head goblyn &middot; artist &middot; developer</div><div class="team-bio">every single trait across all 4,800 goblynz drawn by hand — no AI, no algorithm. just photoshop brushes and coffee. also the dev building all three tools on the roadmap.</div></div>
+    <div class="team-card"><div class="team-av">RR</div><div class="team-name">rorschach</div><div class="team-role">den master &middot; mod lead</div><div class="team-bio">keeps the den running. community moderation, day-to-day ops, making sure the misfits stay weird without burning it down.</div></div>
+    <div class="team-card"><div class="team-av">SS</div><div class="team-name">ssheyii</div><div class="team-role">collab manager</div><div class="team-bio">the bridge builder. behind the 2,100 collab gtd spots and every partnership that got goblynz in front of the right communities pre-launch.</div></div>
+    <div class="team-card"><div class="team-av">SI</div><div class="team-name">sinney</div><div class="team-role">goblyn elder</div><div class="team-bio">the wise one shaping long-term direction — from the 940-token vault strategy to the stakehodler revenue model.</div></div>
   </div>
 
-  <!-- roadmap quick ref -->
+  <!-- roadmap -->
   <div class="card">
     <div class="card-label">roadmap at a glance</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden">
-      <div style="background:var(--card);padding:1rem">
-        <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">months 1–3</div>
-        <div style="font-family:var(--fd);font-weight:700;font-size:13px;color:var(--accent);margin-bottom:4px">foundation</div>
-        <div style="font-size:11px;color:var(--text2);line-height:1.6">mint day april 25 · community building · vault airdrops · nft collection engine launch · first full-stack dev hire</div>
-      </div>
-      <div style="background:var(--card);padding:1rem">
-        <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">months 3–6</div>
-        <div style="font-family:var(--fd);font-weight:700;font-size:13px;color:var(--purple);margin-bottom:4px">products</div>
-        <div style="font-size:11px;color:var(--text2);line-height:1.6">whitelist manager ships · allowlist collection · phase mgmt · merkle generation · bot verification · holders get it free</div>
-      </div>
-      <div style="background:var(--card);padding:1rem">
-        <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">months 6–12</div>
-        <div style="font-family:var(--fd);font-weight:700;font-size:13px;color:var(--green);margin-bottom:4px">scale</div>
-        <div style="font-size:11px;color:var(--text2);line-height:1.6">ai agents for creators · discord mod · twitter engagement · content gen · frontend + backend devs + marketing hired</div>
-      </div>
-      <div style="background:var(--card);padding:1rem">
-        <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">long term</div>
-        <div style="font-family:var(--fd);font-weight:700;font-size:13px;color:var(--rare);margin-bottom:4px">the horizon</div>
-        <div style="font-size:11px;color:var(--text2);line-height:1.6">merch · animated content · games · retail · vision bigger than nfts · stakehodlers earn from everything built</div>
-      </div>
+    <div class="roadmap-grid">
+      <div class="rm-cell"><div class="rm-phase">months 1–3</div><div class="rm-title" style="color:var(--accent)">foundation</div><div class="rm-desc">free mint apr 25 · community build · vault airdrops · nft collection engine · first dev hire</div></div>
+      <div class="rm-cell"><div class="rm-phase">months 3–6</div><div class="rm-title" style="color:var(--purple)">products</div><div class="rm-desc">whitelist manager ships · allowlist phases · merkle generation · bot verification · free for holders</div></div>
+      <div class="rm-cell"><div class="rm-phase">months 6–12</div><div class="rm-title" style="color:var(--green)">scale</div><div class="rm-desc">ai agents · discord mod · twitter automation · content gen · frontend + backend + marketing hired</div></div>
+      <div class="rm-cell"><div class="rm-phase">long term</div><div class="rm-title" style="color:var(--rare)">the horizon</div><div class="rm-desc">merch · animation · games · retail · stakehodlers earn from every product built</div></div>
     </div>
   </div>
 
@@ -524,535 +554,601 @@ body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════════
-//  STORAGE HELPERS (localStorage)
-// ══════════════════════════════════════════════════
-const Store = {
+// ══════════════════════════════════════════════
+//  STORAGE
+// ══════════════════════════════════════════════
+const S = {
   get: k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } },
   set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} },
   del: k => { try { localStorage.removeItem(k) } catch {} }
 };
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
 //  AUTH
-// ══════════════════════════════════════════════════
-let currentUser = null;
+// ══════════════════════════════════════════════
+let ME = null;
 
-function getUsers() { return Store.get('gdn_users') || {} }
-function saveUsers(u) { Store.set('gdn_users', u) }
-function getSession() { return Store.get('gdn_session') }
-function saveSession(u) { Store.set('gdn_session', u) }
+const getUsers = () => S.get('gdn_users') || {};
+const setUsers = u => S.set('gdn_users', u);
+const getSession = () => S.get('gdn_sess');
+const setSession = u => S.set('gdn_sess', u);
 
-function switchAuthTab(tab) {
-  document.getElementById('auth-login').style.display = tab === 'login' ? 'block' : 'none';
-  document.getElementById('auth-register').style.display = tab === 'register' ? 'block' : 'none';
-  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
-  document.getElementById('tab-register').classList.toggle('active', tab === 'register');
-  document.getElementById('auth-error').textContent = '';
+function switchAuthTab(t) {
+  document.getElementById('auth-join').style.display = t === 'join' ? 'block' : 'none';
+  document.getElementById('auth-in').style.display = t === 'in' ? 'block' : 'none';
+  document.getElementById('atab-join').classList.toggle('active', t === 'join');
+  document.getElementById('atab-in').classList.toggle('active', t === 'in');
+  document.getElementById('auth-err').textContent = '';
 }
 
-function authError(msg) { document.getElementById('auth-error').textContent = msg }
+function authErr(m) { document.getElementById('auth-err').textContent = m }
 
-function doRegister() {
-  const username = document.getElementById('reg-user').value.trim().toLowerCase();
-  const pass = document.getElementById('reg-pass').value;
-  const pass2 = document.getElementById('reg-pass2').value;
-  if (!username || username.length < 3) return authError('username must be at least 3 characters');
-  if (!/^[a-z0-9_]+$/.test(username)) return authError('only letters, numbers, underscores');
-  if (!pass || pass.length < 6) return authError('password must be at least 6 characters');
-  if (pass !== pass2) return authError('passwords do not match');
+function doJoin() {
+  const u = document.getElementById('j-user').value.trim().toLowerCase();
+  const p = document.getElementById('j-pass').value;
+  const p2 = document.getElementById('j-pass2').value;
+  if (!u || u.length < 3) return authErr('username needs at least 3 characters');
+  if (!/^[a-z0-9_]+$/.test(u)) return authErr('only letters, numbers, underscores');
+  if (!p || p.length < 6) return authErr('password needs at least 6 characters');
+  if (p !== p2) return authErr("passwords don't match");
   const users = getUsers();
-  if (users[username]) return authError('that name is taken — pick another');
-  users[username] = {
-    username, pass,
-    points: 5000,
-    predictions: {},
-    correct: 0,
-    total: 0,
-    streak: 0,
-    joinedAt: Date.now()
-  };
-  saveUsers(users);
-  loginUser(username);
+  if (users[u]) return authErr('that name is taken — pick another');
+  users[u] = { username: u, pass: p, points: 5000, bets: {}, roundWins: 0, totalBets: 0, joinedAt: Date.now() };
+  setUsers(users);
+  activateUser(u);
 }
 
-function doLogin() {
-  const username = document.getElementById('login-user').value.trim().toLowerCase();
-  const pass = document.getElementById('login-pass').value;
+function doSignIn() {
+  const u = document.getElementById('i-user').value.trim().toLowerCase();
+  const p = document.getElementById('i-pass').value;
   const users = getUsers();
-  if (!users[username]) return authError('no goblyn found with that name');
-  if (users[username].pass !== pass) return authError('wrong password');
-  loginUser(username);
+  if (!users[u]) return authErr("no account found — join first");
+  if (users[u].pass !== p) return authErr('wrong password');
+  activateUser(u);
 }
 
-function loginUser(username) {
+function activateUser(username) {
   const users = getUsers();
-  currentUser = users[username];
-  saveSession(username);
+  ME = users[username];
+  setSession(username);
   document.getElementById('auth-overlay').style.display = 'none';
-  updateNavUser();
+  updateNav();
   renderOracle();
 }
 
-function doSignout() {
-  currentUser = null;
-  Store.del('gdn_session');
+function doSignOut() {
+  ME = null;
+  S.del('gdn_sess');
+  document.getElementById('nav-user').style.display = 'none';
+  document.getElementById('nav-signout').style.display = 'none';
   document.getElementById('auth-overlay').style.display = 'flex';
-  document.getElementById('nav-user-info').style.display = 'none';
-  document.getElementById('signout-btn').style.display = 'none';
 }
 
-function updateNavUser() {
-  if (!currentUser) return;
-  document.getElementById('nav-user-info').style.display = 'flex';
-  document.getElementById('signout-btn').style.display = 'block';
-  document.getElementById('nav-username').textContent = currentUser.username;
-  document.getElementById('nav-points').textContent = currentUser.points.toLocaleString() + ' pts';
-}
-
-function saveCurrentUser() {
+function saveMe() {
+  if (!ME) return;
   const users = getUsers();
-  users[currentUser.username] = currentUser;
-  saveUsers(users);
-  updateNavUser();
+  users[ME.username] = ME;
+  setUsers(users);
+  updateNav();
+  updatePtsBanner();
 }
 
-// ══════════════════════════════════════════════════
-//  PREDICTIONS DATA
-// ══════════════════════════════════════════════════
-const PREDICTIONS = [
-  {
-    id: 'rarest_tier',
-    category: 'collection traits',
-    question: 'what will be the rarest trait tier distribution at reveal?',
-    options: [
-      { id: 'a', label: 'under 2% legendary rate' },
-      { id: 'b', label: '2–5% legendary rate' },
-      { id: 'c', label: 'over 5% legendary rate' },
-    ],
-    points: 500,
-    defaultVotes: [42, 87, 31]
-  },
-  {
-    id: 'one_of_ones',
-    category: 'hidden 1/1s',
-    question: 'how quickly will all 13 hidden 1/1s be found after reveal?',
-    options: [
-      { id: 'a', label: 'within 1 hour' },
-      { id: 'b', label: '1–24 hours' },
-      { id: 'c', label: 'takes more than a day' },
-    ],
-    points: 400,
-    defaultVotes: [65, 93, 22]
-  },
-  {
-    id: 'floor_day1',
-    category: 'market prediction',
-    question: 'what will the opensea floor be 24 hours after mint?',
-    options: [
-      { id: 'a', label: 'stays at 0 eth (free flip)' },
-      { id: 'b', label: '0.01–0.05 eth' },
-      { id: 'c', label: '0.05–0.2 eth' },
-      { id: 'd', label: 'over 0.2 eth' },
-    ],
-    points: 750,
-    defaultVotes: [18, 74, 88, 40]
-  },
-  {
-    id: 'sellout_speed',
-    category: 'mint day',
-    question: 'how fast will all 3,860 public goblynz be claimed?',
-    options: [
-      { id: 'a', label: 'under 10 minutes' },
-      { id: 'b', label: '10–60 minutes' },
-      { id: 'c', label: '1–6 hours' },
-      { id: 'd', label: 'over 6 hours' },
-    ],
-    points: 600,
-    defaultVotes: [110, 88, 34, 12]
-  },
-  {
-    id: 'your_rarity',
-    category: 'personal prediction',
-    question: 'if you mint — what rarity tier will your goblynz be?',
-    options: [
-      { id: 'a', label: 'legendary or epic — i feel it' },
-      { id: 'b', label: 'rare — solid middle ground' },
-      { id: 'c', label: 'uncommon — above average' },
-      { id: 'd', label: 'common — still my goblyn' },
-    ],
-    points: 300,
-    defaultVotes: [45, 67, 89, 120]
-  },
-  {
-    id: 'magicburp_next',
-    category: 'team & roadmap',
-    question: 'which tool will magicburp ship first after mint?',
-    options: [
-      { id: 'a', label: 'nft collection engine (month 1–3)' },
-      { id: 'b', label: 'whitelist manager (month 3–6)' },
-      { id: 'c', label: 'both early — he grinds' },
-    ],
-    points: 450,
-    defaultVotes: [93, 38, 57]
-  },
+function updateNav() {
+  if (!ME) return;
+  document.getElementById('nav-user').style.display = 'flex';
+  document.getElementById('nav-signout').style.display = 'block';
+  document.getElementById('nav-uname').textContent = ME.username;
+  document.getElementById('nav-pts').textContent = ME.points.toLocaleString() + ' pts';
+}
+
+// ══════════════════════════════════════════════
+//  ROUND SYSTEM — 6-hour slots
+// ══════════════════════════════════════════════
+const ROUND_MS = 6 * 60 * 60 * 1000; // 6 hours
+
+function getRoundId() {
+  return Math.floor(Date.now() / ROUND_MS);
+}
+
+function getRoundStart() {
+  return getRoundId() * ROUND_MS;
+}
+
+function getRoundEnd() {
+  return (getRoundId() + 1) * ROUND_MS;
+}
+
+function getNextReset() {
+  return getRoundEnd();
+}
+
+// ══════════════════════════════════════════════
+//  ALL POSSIBLE PREDICTION QUESTIONS (pool)
+// ══════════════════════════════════════════════
+const QUESTION_POOL = [
+  { id:'q_rarest', cat:'collection traits', q:'what will be the rarest trait tier rate at reveal?', opts:[{id:'a',l:'under 2% legendary rate'},{id:'b',l:'2–5% legendary rate'},{id:'c',l:'over 5% legendary rate'}], pts:500 },
+  { id:'q_1of1speed', cat:'hidden 1/1s', q:'how fast will all 13 hidden 1/1s be found after reveal?', opts:[{id:'a',l:'within 1 hour'},{id:'b',l:'1–24 hours'},{id:'c',l:'takes more than a day'}], pts:400 },
+  { id:'q_floor24', cat:'market', q:'what will the opensea floor be 24h after mint?', opts:[{id:'a',l:'stays near 0 eth'},{id:'b',l:'0.01–0.05 eth'},{id:'c',l:'0.05–0.2 eth'},{id:'d',l:'over 0.2 eth'}], pts:750 },
+  { id:'q_sellout', cat:'mint day', q:'how fast will the public 3,860 spots be claimed?', opts:[{id:'a',l:'under 10 mins'},{id:'b',l:'10–60 mins'},{id:'c',l:'1–6 hours'},{id:'d',l:'over 6 hours'}], pts:600 },
+  { id:'q_yourrarity', cat:'personal bet', q:"if you mint — what tier will your goblynz be?", opts:[{id:'a',l:'legendary or epic'},{id:'b',l:'rare'},{id:'c',l:'uncommon'},{id:'d',l:'common — still mine'}], pts:300 },
+  { id:'q_firsttool', cat:'team & roadmap', q:'which tool ships first after mint?', opts:[{id:'a',l:'nft collection engine'},{id:'b',l:'whitelist manager'},{id:'c',l:'both early — he grinds'}], pts:450 },
+  { id:'q_vaultrelease', cat:'vault strategy', q:'when will the 700 locked vault tokens first release?', opts:[{id:'a',l:'before 6 months'},{id:'b',l:'exactly at 12 months'},{id:'c',l:'later — floor stays low'}], pts:500 },
+  { id:'q_collab', cat:'community', q:'how many collab projects will goblynz announce in month 1?', opts:[{id:'a',l:'1–2 collabs'},{id:'b',l:'3–5 collabs'},{id:'c',l:'6+ collabs'}], pts:350 },
+  { id:'q_floorweek1', cat:'market', q:'where will the floor be 1 week after mint?', opts:[{id:'a',l:'under 0.01 eth'},{id:'b',l:'0.01–0.1 eth'},{id:'c',l:'over 0.1 eth'}], pts:600 },
+  { id:'q_discord', cat:'community', q:'how big will the discord be at end of month 1?', opts:[{id:'a',l:'under 2k members'},{id:'b',l:'2–5k members'},{id:'c',l:'over 5k members'}], pts:400 },
+  { id:'q_magicburpfirst', cat:'team', q:'how long will the nft collection engine take to ship?', opts:[{id:'a',l:'under 4 weeks'},{id:'b',l:'4–8 weeks'},{id:'c',l:'over 2 months'}], pts:450 },
+  { id:'q_airdrop', cat:'vault', q:'when will the first community vault airdrop happen?', opts:[{id:'a',l:'within 2 weeks of mint'},{id:'b',l:'1–2 months post mint'},{id:'c',l:'waits for first product'}], pts:350 },
 ];
 
-// Shared vote counts stored in localStorage
-function getVotes() { return Store.get('gdn_votes') || {} }
-function saveVotes(v) { Store.set('gdn_votes', v) }
+// Pick 6 questions for current round based on round id (deterministic shuffle)
+function getRoundQuestions(roundId) {
+  const pool = [...QUESTION_POOL];
+  let seed = roundId * 6271 + 1337;
+  const seeded = () => { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 0xffffffff };
+  // fisher-yates with seeded rand
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(seeded() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, 6);
+}
 
-function getTotalVotes(predId) {
-  const votes = getVotes();
-  const pred = PREDICTIONS.find(p => p.id === predId);
+// ══════════════════════════════════════════════
+//  SHARED VOTES (per round)
+// ══════════════════════════════════════════════
+function getRoundVotes(roundId) { return S.get('gdn_votes_' + roundId) || {} }
+function setRoundVotes(roundId, v) { S.set('gdn_votes_' + roundId, v) }
+
+function getQuestionTotals(roundId, qid, opts) {
+  const votes = getRoundVotes(roundId);
   const counts = {};
-  pred.options.forEach((o, i) => {
-    counts[o.id] = (votes[predId] ? (votes[predId][o.id] || 0) : 0) + pred.defaultVotes[i];
-  });
+  opts.forEach(o => counts[o.id] = (votes[qid] && votes[qid][o.id]) || 0);
   return counts;
 }
 
-function getOptionPct(predId, optionId) {
-  const counts = getTotalVotes(predId);
-  const total = Object.values(counts).reduce((a, b) => a + b, 0);
-  return total ? Math.round((counts[optionId] / total) * 100) : 0;
+function getOptPct(counts, optId) {
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+  return total ? Math.round((counts[optId]/total)*100) : 0;
 }
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
 //  ORACLE RENDER
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
+let countdownInterval;
+
 function renderOracle() {
-  if (!currentUser) return;
-  renderPointsBanner();
+  if (!ME) return;
+  updatePtsBanner();
+  renderCountdown();
+  renderWinnerSection();
   renderPredictions();
   renderLeaderboard();
 }
 
-function renderPointsBanner() {
-  const u = currentUser;
-  document.getElementById('pb-avatar').textContent = u.username[0];
-  document.getElementById('pb-username').textContent = u.username;
-  document.getElementById('pb-balance').textContent = u.points.toLocaleString();
-  document.getElementById('pb-correct').textContent = u.correct || 0;
-  document.getElementById('pb-predictions').textContent = u.total || 0;
-  document.getElementById('pb-streak').textContent = u.streak || 0;
-  document.getElementById('nav-points').textContent = u.points.toLocaleString() + ' pts';
+function updatePtsBanner() {
+  if (!ME) return;
+  document.getElementById('pb-av').textContent = ME.username[0];
+  document.getElementById('pb-name').textContent = ME.username;
+  document.getElementById('pb-bal').textContent = ME.points.toLocaleString();
+  document.getElementById('pb-bets').textContent = ME.totalBets || 0;
+  document.getElementById('pb-won').textContent = ME.roundWins || 0;
+  document.getElementById('nav-pts').textContent = ME.points.toLocaleString() + ' pts';
 }
 
+function renderCountdown() {
+  clearInterval(countdownInterval);
+  const tick = () => {
+    const ms = getNextReset() - Date.now();
+    if (ms <= 0) { location.reload(); return; }
+    const h = Math.floor(ms/3600000);
+    const m = Math.floor((ms%3600000)/60000);
+    const s = Math.floor((ms%60000)/1000);
+    document.getElementById('cd-timer').textContent =
+      String(h).padStart(2,'0') + 'h ' + String(m).padStart(2,'0') + 'm ' + String(s).padStart(2,'0') + 's';
+  };
+  tick();
+  countdownInterval = setInterval(tick, 1000);
+}
+
+// ══════════════════════════════════════════════
+//  AI WINNER DRAW
+// ══════════════════════════════════════════════
+async function runAiDraw(participants, roundId) {
+  const sec = document.getElementById('winner-section');
+  sec.style.display = 'block';
+  sec.innerHTML = `
+    <div class="winner-card">
+      <div class="winner-header">
+        <div class="winner-icon">&#x25C6;</div>
+        <div><div class="winner-title">round ${roundId} · winner draw</div><div class="winner-sub">the oracle is deciding...</div></div>
+      </div>
+      <div class="winner-body">
+        <div class="winner-loading"><div class="spinner"></div><span>the oracle is weighing the misfits...</span></div>
+      </div>
+    </div>`;
+
+  if (!participants || participants.length === 0) {
+    sec.innerHTML = `
+      <div class="winner-card">
+        <div class="winner-header"><div class="winner-icon">&#x25C6;</div><div><div class="winner-title">round ${roundId} complete</div><div class="winner-sub">no bets were placed this round</div></div></div>
+        <div class="winner-body">the den was quiet. place bets next round to climb the board.</div>
+      </div>`;
+    return;
+  }
+
+  try {
+    const prompt = `You are the oracle of goblynz den, a fun NFT prediction game. You must pick a winner from these participants who placed bets this round.
+
+Participants (name, points, total bets placed):
+${participants.map(p=>`- ${p.username}: ${p.points} pts, ${p.totalBets} bets placed`).join('\n')}
+
+Rules for your pick:
+- Weighted by activity: users with MORE bets placed have higher chance
+- But randomness matters: even low-bet users can win (it's a game)
+- Pick ONE winner
+- Write 2-3 sentences in the goblynz voice (misfit, lowercase, weird energy) explaining why this goblyn won
+- Keep it fun and cryptic
+
+Respond in this exact JSON format only, no other text:
+{"winner":"username","reason":"your 2-3 sentence explanation in lowercase goblyn voice"}`;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content?.find(b => b.type === 'text')?.text || '';
+    const clean = text.replace(/```json|```/g,'').trim();
+    const result = JSON.parse(clean);
+
+    // award winner bonus
+    const users = getUsers();
+    if (users[result.winner]) {
+      users[result.winner].points += 1000;
+      users[result.winner].roundWins = (users[result.winner].roundWins || 0) + 1;
+      setUsers(users);
+      if (ME && ME.username === result.winner) {
+        ME = users[result.winner];
+        updateNav();
+        updatePtsBanner();
+      }
+    }
+
+    sec.innerHTML = `
+      <div class="winner-card">
+        <div class="winner-header">
+          <div class="winner-icon">&#x1F3C6;</div>
+          <div><div class="winner-title">round ${roundId} winner</div><div class="winner-sub">+1,000 pts awarded</div></div>
+        </div>
+        <div class="winner-body">
+          <span class="winner-name">${result.winner}</span> has been chosen by the oracle.<br/><br/>
+          <em style="color:var(--text3)">${result.reason}</em>
+        </div>
+      </div>`;
+  } catch(e) {
+    // fallback: pure weighted random
+    const weights = participants.map(p => Math.max(1, p.totalBets));
+    const total = weights.reduce((a,b)=>a+b,0);
+    let r = Math.random() * total, pick = participants[participants.length-1];
+    for (let i = 0; i < participants.length; i++) { r -= weights[i]; if (r <= 0) { pick = participants[i]; break; } }
+
+    sec.innerHTML = `
+      <div class="winner-card">
+        <div class="winner-header">
+          <div class="winner-icon">&#x1F3C6;</div>
+          <div><div class="winner-title">round ${roundId} winner</div><div class="winner-sub">+1,000 pts awarded</div></div>
+        </div>
+        <div class="winner-body">
+          the oracle has spoken. <span class="winner-name">${pick.username}</span> emerges from the swamp victorious.
+        </div>
+      </div>`;
+  }
+}
+
+function renderWinnerSection() {
+  const roundId = getRoundId();
+  const lastWinner = S.get('gdn_last_winner');
+  // Show winner from previous round if it exists and was recent
+  if (lastWinner && lastWinner.roundId === roundId - 1) {
+    const sec = document.getElementById('winner-section');
+    sec.style.display = 'block';
+    sec.innerHTML = `
+      <div class="winner-card">
+        <div class="winner-header">
+          <div class="winner-icon">&#x1F3C6;</div>
+          <div><div class="winner-title">round ${lastWinner.roundId} winner</div><div class="winner-sub">+1,000 pts awarded last round</div></div>
+        </div>
+        <div class="winner-body">
+          <span class="winner-name">${lastWinner.winner}</span> was chosen by the oracle.<br/><br/>
+          <em style="color:var(--text3)">${lastWinner.reason || 'the swamp chose wisely.'}</em>
+        </div>
+      </div>`;
+  }
+}
+
+// ══════════════════════════════════════════════
+//  PREDICTIONS RENDER
+// ══════════════════════════════════════════════
 function renderPredictions() {
-  const grid = document.getElementById('predictions-grid');
+  const roundId = getRoundId();
+  const questions = getRoundQuestions(roundId);
+  document.getElementById('round-badge').textContent = 'round ' + (roundId % 100 + 1);
+  const grid = document.getElementById('preds-grid');
   grid.innerHTML = '';
 
-  PREDICTIONS.forEach(pred => {
-    const userVote = currentUser.predictions[pred.id];
-    const voted = !!userVote;
-    const counts = getTotalVotes(pred.id);
-    const totalVoters = Object.values(counts).reduce((a, b) => a + b, 0);
+  questions.forEach(q => {
+    const betKey = 'r' + roundId + '_' + q.id;
+    const myBet = ME.bets && ME.bets[betKey]; // { optId, amount }
+    const locked = !!myBet;
+    const counts = getQuestionTotals(roundId, q.id, q.opts);
+    const totalVoters = Object.values(counts).reduce((a,b)=>a+b,0);
 
     const card = document.createElement('div');
-    card.className = 'pred-card' + (voted ? ' voted' : '');
+    card.className = 'pred-card' + (locked ? ' locked' : '');
 
-    const optionsHtml = pred.options.map(opt => {
-      const pct = getOptionPct(pred.id, opt.id);
-      const isSelected = userVote === opt.id;
-      let cls = 'pred-option';
-      if (isSelected) cls += ' selected';
-      return `
-        <div class="${cls}" data-pred="${pred.id}" data-opt="${opt.id}">
-          <div class="pred-option-bar" style="width:${voted ? pct : 0}%"></div>
-          <div class="pred-option-content">
-            <span class="pred-option-label">${opt.label}</span>
-            <span>
-              ${voted ? `<span class="pred-option-pct">${pct}%</span>` : ''}
-              ${isSelected ? '<span class="pred-option-check">&#x25C6;</span>' : ''}
-            </span>
-          </div>
-        </div>`;
+    const optsHtml = q.opts.map(o => {
+      const pct = locked ? getOptPct(counts, o.id) : 0;
+      const isSel = myBet && myBet.optId === o.id;
+      let cls = 'pred-opt' + (isSel ? ' selected' : '') + (locked ? ' disabled' : '');
+      return `<div class="${cls}" data-qid="${q.id}" data-oid="${o.id}" data-rk="${betKey}">
+        <div class="pred-opt-bar" style="width:${pct}%"></div>
+        <div class="pred-opt-inner">
+          <span class="pred-opt-lbl">${o.l}</span>
+          <span class="pred-opt-right">
+            ${locked ? `<span class="pred-opt-pct">${pct}%</span>` : ''}
+            ${isSel ? '<span class="pred-opt-check">&#x25C6;</span>' : ''}
+          </span>
+        </div>
+      </div>`;
     }).join('');
 
-    const betRow = voted ? `
-      <div class="pred-voted-badge">&#x25C6; prediction locked in &middot; resolves at reveal</div>
-    ` : `
-      <div class="pred-bet-row">
-        <span class="pred-bet-label">bet</span>
-        <input class="pred-bet-input" type="number" id="bet-${pred.id}" placeholder="100" min="50" max="${currentUser.points}" value="100"/>
-        <span class="pred-bet-label">pts</span>
-      </div>`;
+    const betRow = locked
+      ? `<div class="pred-locked-badge">&#x25C6; locked in · ${myBet.amount.toLocaleString()} pts wagered</div>`
+      : `<div class="pred-bet-row">
+           <span class="pred-bet-lbl">wager</span>
+           <input class="pred-bet-input" id="bet-${betKey}" type="number" placeholder="100" min="50" max="${ME.points}" value="100"/>
+           <span class="pred-bet-lbl">pts</span>
+         </div>
+         <button class="pred-lock-btn" data-bk="${betKey}" data-qid="${q.id}">lock in prediction &#x25C6;</button>`;
 
     card.innerHTML = `
-      <div class="pred-header">
-        <div class="pred-category">${pred.category}</div>
-        <div class="pred-question">${pred.question}</div>
+      <div class="pred-head">
+        <div class="pred-cat">${q.cat}</div>
+        <div class="pred-q">${q.q}</div>
       </div>
       <div class="pred-body">
-        <div class="pred-options">${optionsHtml}</div>
+        <div class="pred-opts">${optsHtml}</div>
         ${betRow}
-        <div class="pred-meta">
-          <span class="pred-voters">${totalVoters.toLocaleString()} predictions</span>
-          <span class="pred-points">up to +${pred.points.toLocaleString()} pts</span>
+        <div class="pred-foot">
+          <span>${totalVoters} predictions this round</span>
+          <span class="pred-pts-reward">+${q.pts.toLocaleString()} pts if correct</span>
         </div>
       </div>`;
 
     grid.appendChild(card);
 
-    // attach click events to options
-    if (!voted) {
-      card.querySelectorAll('.pred-option').forEach(el => {
+    if (!locked) {
+      // option highlight on click
+      card.querySelectorAll('.pred-opt').forEach(el => {
         el.addEventListener('click', () => {
-          // highlight selected
-          card.querySelectorAll('.pred-option').forEach(o => o.classList.remove('selected'));
+          card.querySelectorAll('.pred-opt').forEach(o => o.classList.remove('selected'));
           el.classList.add('selected');
-          el.dataset.selected = '1';
         });
       });
-
-      // confirm on bet input enter or double-click option
-      card.querySelectorAll('.pred-option').forEach(el => {
-        el.addEventListener('dblclick', () => submitPrediction(pred.id, el.dataset.opt));
-      });
-
-      const betInput = card.querySelector(`#bet-${pred.id}`);
-      if (betInput) betInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-          const sel = card.querySelector('.pred-option.selected');
-          if (sel) submitPrediction(pred.id, sel.dataset.opt);
-          else showToast('pick an option first', 'error');
-        }
-      });
-
-      // lock in button via option click
-      card.querySelectorAll('.pred-option').forEach(el => {
-        el.addEventListener('click', () => {
-          // set a timeout so user can confirm
-          clearTimeout(el._confirmTimer);
-          el.style.outline = '1px solid var(--accent)';
-          el._confirmTimer = setTimeout(() => { el.style.outline = ''; }, 2000);
-        });
-      });
-    }
-
-    // submit on double-click for voted options
-    if (!voted) {
-      // add a "lock in" button for clarity
-      const lockBtn = document.createElement('button');
-      lockBtn.className = 'btn-primary';
-      lockBtn.style.cssText = 'width:100%;margin-top:10px;font-size:11px;padding:9px';
-      lockBtn.textContent = 'lock in prediction ◆';
-      card.querySelector('.pred-body').appendChild(lockBtn);
-      lockBtn.addEventListener('click', () => {
-        const sel = card.querySelector('.pred-option.selected');
-        if (!sel) return showToast('select an option first', 'error');
-        submitPrediction(pred.id, sel.dataset.opt, pred.id);
+      // lock in button
+      const lockBtn = card.querySelector('.pred-lock-btn');
+      if (lockBtn) lockBtn.addEventListener('click', () => {
+        const sel = card.querySelector('.pred-opt.selected');
+        if (!sel) return showToast('pick an option first', 'err');
+        placeBet(q, sel.dataset.oid, betKey, roundId);
       });
     }
   });
 }
 
-function submitPrediction(predId, optId) {
-  if (!currentUser) return;
-  if (currentUser.predictions[predId]) return showToast('already locked in', 'error');
+function placeBet(q, optId, betKey, roundId) {
+  if (!ME) return;
+  if (ME.bets && ME.bets[betKey]) return showToast('already locked in', 'err');
+  const inp = document.getElementById('bet-' + betKey);
+  const amount = Math.max(50, Math.min(ME.points, parseInt(inp?.value) || 100));
+  if (amount > ME.points) return showToast('not enough points', 'err');
 
-  const betInput = document.getElementById('bet-' + predId);
-  const bet = betInput ? Math.max(50, Math.min(currentUser.points, parseInt(betInput.value) || 100)) : 100;
+  ME.points -= amount;
+  if (!ME.bets) ME.bets = {};
+  ME.bets[betKey] = { optId, amount };
+  ME.totalBets = (ME.totalBets || 0) + 1;
 
-  if (bet > currentUser.points) return showToast('not enough points', 'error');
+  // record shared vote
+  const votes = getRoundVotes(roundId);
+  if (!votes[q.id]) votes[q.id] = {};
+  votes[q.id][optId] = (votes[q.id][optId] || 0) + 1;
+  setRoundVotes(roundId, votes);
 
-  // deduct bet, store prediction
-  currentUser.points -= bet;
-  currentUser.predictions[predId] = optId;
-  currentUser.predictions[predId + '_bet'] = bet;
-  currentUser.total = (currentUser.total || 0) + 1;
-
-  // update shared vote counts
-  const votes = getVotes();
-  if (!votes[predId]) votes[predId] = {};
-  votes[predId][optId] = (votes[predId][optId] || 0) + 1;
-  saveVotes(votes);
-
-  saveCurrentUser();
-  showToast('prediction locked in · ' + bet.toLocaleString() + ' pts wagered ◆', 'success');
+  saveMe();
+  showToast('locked in · ' + amount.toLocaleString() + ' pts wagered ◆', 'ok');
   renderOracle();
 }
 
-// ══════════════════════════════════════════════════
-//  LEADERBOARD
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
+//  LEADERBOARD — real users only
+// ══════════════════════════════════════════════
 function renderLeaderboard() {
   const users = getUsers();
+  const lb = Object.values(users)
+    .sort((a,b) => b.points - a.points);
 
-  // Build leaderboard from all users
-  const lb = Object.values(users).map(u => ({
-    username: u.username,
-    points: u.points,
-    total: u.total || 0,
-    correct: u.correct || 0,
-  })).sort((a, b) => b.points - a.points).slice(0, 20);
+  const card = document.getElementById('lb-card');
 
-  // Add synthetic community goblynz to make it lively
-  const synthetic = [
-    { username: 'swampwitch', points: 7840, total: 6, correct: 4 },
-    { username: 'voidcrawler', points: 7210, total: 5, correct: 3 },
-    { username: 'fungalking', points: 6950, total: 6, correct: 3 },
-    { username: 'rorschach', points: 6730, total: 4, correct: 2 },
-    { username: 'bonecollector', points: 6480, total: 5, correct: 2 },
-    { username: 'sewer_rat_9', points: 6100, total: 4, correct: 2 },
-    { username: 'mudgoblyn', points: 5920, total: 3, correct: 1 },
-    { username: 'cursedone', points: 5500, total: 2, correct: 1 },
-    { username: 'misfit_444', points: 5200, total: 1, correct: 0 },
-    { username: 'weirdling', points: 5000, total: 0, correct: 0 },
-  ].filter(s => !users[s.username]); // don't duplicate real users
+  if (lb.length === 0) {
+    card.innerHTML = '<div class="lb-empty">no goblynz on the board yet · sign up and place bets to appear here</div>';
+    document.getElementById('lb-stamp').textContent = '';
+    return;
+  }
 
-  const combined = [...lb, ...synthetic]
-    .sort((a, b) => b.points - a.points)
-    .slice(0, 15);
+  const medals = ['&#x1F947;','&#x1F948;','&#x1F949;'];
+  card.innerHTML = lb.slice(0,20).map((u,i) => {
+    const isMe = ME && u.username === ME.username;
+    const rkCls = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    const rkDisplay = i < 3 ? medals[i] : '#'+(i+1);
+    return `<div class="lb-row${isMe?' me':''}">
+      <div class="lb-rank ${rkCls}">${rkDisplay}</div>
+      <div class="lb-av">${u.username[0]}</div>
+      <div class="lb-name">${u.username}${isMe?'<span class="lb-you">you</span>':''}</div>
+      <div class="lb-right">
+        <div class="lb-pts">${u.points.toLocaleString()}</div>
+        <div class="lb-detail">${u.totalBets||0} bets · ${u.roundWins||0} wins</div>
+      </div>
+    </div>`;
+  }).join('');
 
-  const container = document.getElementById('leaderboard');
-  container.innerHTML = '';
-
-  const medals = ['&#x1F947;', '&#x1F948;', '&#x1F949;'];
-
-  combined.forEach((entry, i) => {
-    const isMe = currentUser && entry.username === currentUser.username;
-    const row = document.createElement('div');
-    row.className = 'lb-row' + (isMe ? ' me' : '');
-
-    const rankCls = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
-    const rankDisplay = i < 3 ? medals[i] : `#${i + 1}`;
-
-    row.innerHTML = `
-      <div class="lb-rank ${rankCls}">${rankDisplay}</div>
-      <div class="lb-avatar">${entry.username[0]}</div>
-      <div class="lb-name">${entry.username}${isMe ? '<span class="lb-you">you</span>' : ''}</div>
-      <div class="lb-stats">
-        <div class="lb-points">${entry.points.toLocaleString()}</div>
-        <div class="lb-detail">${entry.correct}/${entry.total} correct</div>
-      </div>`;
-    container.appendChild(row);
-  });
-
-  // timestamp
   const now = new Date();
-  document.getElementById('lb-updated').textContent = 'updated ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0') + ' utc';
+  document.getElementById('lb-stamp').textContent =
+    'updated ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0') + ' utc';
 }
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
+//  6-HOUR ROUND TRANSITION
+// ══════════════════════════════════════════════
+function checkRoundTransition() {
+  const roundId = getRoundId();
+  const lastRound = S.get('gdn_last_round');
+
+  if (lastRound !== null && lastRound < roundId) {
+    // round just flipped — run winner draw for previous round
+    const prevUsers = Object.values(getUsers()).filter(u => {
+      // participated in previous round
+      const prevKey = 'r' + lastRound + '_';
+      return Object.keys(u.bets || {}).some(k => k.startsWith(prevKey));
+    });
+
+    runAiDraw(prevUsers, lastRound).then(() => {
+      const winner = document.getElementById('winner-section').querySelector('.winner-name');
+      if (winner) {
+        S.set('gdn_last_winner', {
+          roundId: lastRound,
+          winner: winner.textContent,
+          reason: document.getElementById('winner-section').querySelector('em')?.textContent || ''
+        });
+      }
+    });
+  }
+
+  S.set('gdn_last_round', roundId);
+}
+
+// ══════════════════════════════════════════════
 //  TOAST
-// ══════════════════════════════════════════════════
-let toastTimer;
-function showToast(msg, type = '') {
+// ══════════════════════════════════════════════
+let toastT;
+function showToast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.className = 'toast show' + (type ? ' ' + type : '');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.className = 'toast', 3000);
+  t.className = 'toast show' + (type?' '+type:'');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.className='toast', 3000);
 }
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
 //  RARITY ENGINE
-// ══════════════════════════════════════════════════
-const TRAIT_POOL={background:{label:"Background",traits:[{value:"Cursed Swamp",pct:2.1,tier:"legendary"},{value:"Void Black",pct:3.4,tier:"legendary"},{value:"Goblin Ruins",pct:5.8,tier:"epic"},{value:"Moldy Cavern",pct:7.2,tier:"epic"},{value:"Sewer Mist",pct:9.4,tier:"rare"},{value:"Rotted Forest",pct:11.3,tier:"rare"},{value:"Toxic Green",pct:13.6,tier:"uncommon"},{value:"Dungeon Stone",pct:15.1,tier:"uncommon"},{value:"Mud Brown",pct:17.4,tier:"common"},{value:"Dull Ochre",pct:14.7,tier:"common"}]},skin:{label:"Skin",traits:[{value:"Cursed Void",pct:1.2,tier:"legendary"},{value:"Bioluminescent",pct:2.8,tier:"legendary"},{value:"Fungal Bloom",pct:4.6,tier:"epic"},{value:"Rotting Flesh",pct:6.3,tier:"epic"},{value:"Swamp Green",pct:9.1,tier:"rare"},{value:"Sickly Yellow",pct:12.4,tier:"rare"},{value:"Pale Ash",pct:14.8,tier:"uncommon"},{value:"Mud Green",pct:16.2,tier:"uncommon"},{value:"Olive",pct:17.8,tier:"common"},{value:"Mossy Brown",pct:14.8,tier:"common"}]},eyes:{label:"Eyes",traits:[{value:"Spectral White",pct:1.8,tier:"legendary"},{value:"Third Eye",pct:3.2,tier:"legendary"},{value:"Bloodshot Gold",pct:5.1,tier:"epic"},{value:"Milky Dead",pct:7.4,tier:"epic"},{value:"Toxic Yellow",pct:10.2,tier:"rare"},{value:"Glowing Red",pct:12.8,tier:"rare"},{value:"Sunken Black",pct:14.9,tier:"uncommon"},{value:"Beady Brown",pct:16.3,tier:"uncommon"},{value:"Squinting",pct:14.4,tier:"common"},{value:"Wide Blank",pct:13.9,tier:"common"}]},mouth:{label:"Mouth",traits:[{value:"Void Maw",pct:2.4,tier:"legendary"},{value:"Gold Fang",pct:3.8,tier:"legendary"},{value:"Broken Jaw",pct:5.6,tier:"epic"},{value:"Rotten Grin",pct:7.9,tier:"epic"},{value:"Crooked Teeth",pct:10.6,tier:"rare"},{value:"Missing Tooth",pct:12.1,tier:"rare"},{value:"Mumbling",pct:14.7,tier:"uncommon"},{value:"Sneering",pct:15.8,tier:"uncommon"},{value:"Grumpy Frown",pct:14.3,tier:"common"},{value:"Blank Stare",pct:12.8,tier:"common"}]},head:{label:"Head",traits:[{value:"Cursed Crown",pct:1.4,tier:"legendary"},{value:"Witch Hat",pct:2.9,tier:"legendary"},{value:"Rusty Helmet",pct:4.7,tier:"epic"},{value:"Bone Headband",pct:6.8,tier:"epic"},{value:"Mushroom Cap",pct:9.3,tier:"rare"},{value:"Rat Nest Hair",pct:11.9,tier:"rare"},{value:"Matted Mane",pct:14.6,tier:"uncommon"},{value:"Bald",pct:16.4,tier:"uncommon"},{value:"Scraggly Hair",pct:17.1,tier:"common"},{value:"None",pct:14.9,tier:"common"}]},clothing:{label:"Clothing",traits:[{value:"Void Robe",pct:1.9,tier:"legendary"},{value:"Elder Cloak",pct:3.3,tier:"legendary"},{value:"Tattered Armor",pct:5.4,tier:"epic"},{value:"Bone Vest",pct:7.1,tier:"epic"},{value:"Sewer Rags",pct:10.4,tier:"rare"},{value:"Torn Tunic",pct:12.6,tier:"rare"},{value:"Muddy Wrap",pct:14.8,tier:"uncommon"},{value:"Burlap Sack",pct:16.2,tier:"uncommon"},{value:"Nothing",pct:15.4,tier:"common"},{value:"Filthy Rag",pct:12.9,tier:"common"}]},accessory:{label:"Accessory",traits:[{value:"Cursed Amulet",pct:1.6,tier:"legendary"},{value:"Skull Necklace",pct:3.1,tier:"legendary"},{value:"Rusty Chain",pct:5.2,tier:"epic"},{value:"Bone Ring",pct:7.6,tier:"epic"},{value:"Rat Familiar",pct:10.1,tier:"rare"},{value:"Twig Staff",pct:12.4,tier:"rare"},{value:"Dead Flower",pct:9.4,tier:"rare"},{value:"Broken Bottle",pct:15.1,tier:"uncommon"},{value:"Muddy Pouch",pct:14.2,tier:"uncommon"},{value:"None",pct:21.3,tier:"common"}]},special:{label:"Special",traits:[{value:"1/1 Unique",pct:0.27,tier:"legendary"},{value:"Cursed Mark",pct:2.1,tier:"legendary"},{value:"Glow Aura",pct:4.3,tier:"epic"},{value:"Fungal Growth",pct:6.8,tier:"epic"},{value:"Scar",pct:11.2,tier:"rare"},{value:"Tattoo",pct:13.6,tier:"rare"},{value:"None",pct:61.73,tier:"common"}]}};
+// ══════════════════════════════════════════════
+const TP={background:{label:"Background",traits:[{value:"Cursed Swamp",pct:2.1,tier:"legendary"},{value:"Void Black",pct:3.4,tier:"legendary"},{value:"Goblin Ruins",pct:5.8,tier:"epic"},{value:"Moldy Cavern",pct:7.2,tier:"epic"},{value:"Sewer Mist",pct:9.4,tier:"rare"},{value:"Rotted Forest",pct:11.3,tier:"rare"},{value:"Toxic Green",pct:13.6,tier:"uncommon"},{value:"Dungeon Stone",pct:15.1,tier:"uncommon"},{value:"Mud Brown",pct:17.4,tier:"common"},{value:"Dull Ochre",pct:14.7,tier:"common"}]},skin:{label:"Skin",traits:[{value:"Cursed Void",pct:1.2,tier:"legendary"},{value:"Bioluminescent",pct:2.8,tier:"legendary"},{value:"Fungal Bloom",pct:4.6,tier:"epic"},{value:"Rotting Flesh",pct:6.3,tier:"epic"},{value:"Swamp Green",pct:9.1,tier:"rare"},{value:"Sickly Yellow",pct:12.4,tier:"rare"},{value:"Pale Ash",pct:14.8,tier:"uncommon"},{value:"Mud Green",pct:16.2,tier:"uncommon"},{value:"Olive",pct:17.8,tier:"common"},{value:"Mossy Brown",pct:14.8,tier:"common"}]},eyes:{label:"Eyes",traits:[{value:"Spectral White",pct:1.8,tier:"legendary"},{value:"Third Eye",pct:3.2,tier:"legendary"},{value:"Bloodshot Gold",pct:5.1,tier:"epic"},{value:"Milky Dead",pct:7.4,tier:"epic"},{value:"Toxic Yellow",pct:10.2,tier:"rare"},{value:"Glowing Red",pct:12.8,tier:"rare"},{value:"Sunken Black",pct:14.9,tier:"uncommon"},{value:"Beady Brown",pct:16.3,tier:"uncommon"},{value:"Squinting",pct:14.4,tier:"common"},{value:"Wide Blank",pct:13.9,tier:"common"}]},mouth:{label:"Mouth",traits:[{value:"Void Maw",pct:2.4,tier:"legendary"},{value:"Gold Fang",pct:3.8,tier:"legendary"},{value:"Broken Jaw",pct:5.6,tier:"epic"},{value:"Rotten Grin",pct:7.9,tier:"epic"},{value:"Crooked Teeth",pct:10.6,tier:"rare"},{value:"Missing Tooth",pct:12.1,tier:"rare"},{value:"Mumbling",pct:14.7,tier:"uncommon"},{value:"Sneering",pct:15.8,tier:"uncommon"},{value:"Grumpy Frown",pct:14.3,tier:"common"},{value:"Blank Stare",pct:12.8,tier:"common"}]},head:{label:"Head",traits:[{value:"Cursed Crown",pct:1.4,tier:"legendary"},{value:"Witch Hat",pct:2.9,tier:"legendary"},{value:"Rusty Helmet",pct:4.7,tier:"epic"},{value:"Bone Headband",pct:6.8,tier:"epic"},{value:"Mushroom Cap",pct:9.3,tier:"rare"},{value:"Rat Nest Hair",pct:11.9,tier:"rare"},{value:"Matted Mane",pct:14.6,tier:"uncommon"},{value:"Bald",pct:16.4,tier:"uncommon"},{value:"Scraggly Hair",pct:17.1,tier:"common"},{value:"None",pct:14.9,tier:"common"}]},clothing:{label:"Clothing",traits:[{value:"Void Robe",pct:1.9,tier:"legendary"},{value:"Elder Cloak",pct:3.3,tier:"legendary"},{value:"Tattered Armor",pct:5.4,tier:"epic"},{value:"Bone Vest",pct:7.1,tier:"epic"},{value:"Sewer Rags",pct:10.4,tier:"rare"},{value:"Torn Tunic",pct:12.6,tier:"rare"},{value:"Muddy Wrap",pct:14.8,tier:"uncommon"},{value:"Burlap Sack",pct:16.2,tier:"uncommon"},{value:"Nothing",pct:15.4,tier:"common"},{value:"Filthy Rag",pct:12.9,tier:"common"}]},accessory:{label:"Accessory",traits:[{value:"Cursed Amulet",pct:1.6,tier:"legendary"},{value:"Skull Necklace",pct:3.1,tier:"legendary"},{value:"Rusty Chain",pct:5.2,tier:"epic"},{value:"Bone Ring",pct:7.6,tier:"epic"},{value:"Rat Familiar",pct:10.1,tier:"rare"},{value:"Twig Staff",pct:12.4,tier:"rare"},{value:"Dead Flower",pct:9.4,tier:"rare"},{value:"Broken Bottle",pct:15.1,tier:"uncommon"},{value:"Muddy Pouch",pct:14.2,tier:"uncommon"},{value:"None",pct:21.3,tier:"common"}]},special:{label:"Special",traits:[{value:"1/1 Unique",pct:0.27,tier:"legendary"},{value:"Cursed Mark",pct:2.1,tier:"legendary"},{value:"Glow Aura",pct:4.3,tier:"epic"},{value:"Fungal Growth",pct:6.8,tier:"epic"},{value:"Scar",pct:11.2,tier:"rare"},{value:"Tattoo",pct:13.6,tier:"rare"},{value:"None",pct:61.73,tier:"common"}]}};
 const TC={legendary:"#f0cc70",epic:"#c07aff",rare:"#5aacff",uncommon:"#5adf8a",common:"#6b6047"};
 function seededRand(s){let r=s;return()=>{r=(r*1664525+1013904223)&0xffffffff;return(r>>>0)/0xffffffff}}
-function genGoblynz(id){const rand=seededRand(id*7919+31337);const t={};for(const[c,d]of Object.entries(TRAIT_POOL)){const p=d.traits,roll=rand()*100;let cum=0,ch=p[p.length-1];for(const x of p){cum+=x.pct;if(roll<=cum){ch=x;break}}t[c]={...ch,label:d.label}}return t}
+function genG(id){const rand=seededRand(id*7919+31337);const t={};for(const[c,d]of Object.entries(TP)){const pool=d.traits,roll=rand()*100;let cum=0,ch=pool[pool.length-1];for(const x of pool){cum+=x.pct;if(roll<=cum){ch=x;break}}t[c]={...ch,label:d.label}}return t}
 function calcScore(t){let s=0;for(const x of Object.values(t))s+=(100/x.pct);return Math.round(s)}
-function calcRank(s){const n=(s-180)/(2800-180);return Math.max(1,Math.round(4800-n*4798))}
+function calcRank(s){return Math.max(1,Math.round(4800-((s-180)/(2800-180))*4798))}
 
-function analyzeToken(tokenId) {
-  const id = parseInt(tokenId);
-  if (!id || id < 1 || id > 4800) { alert('enter a valid token id between 1 and 4800'); return }
-  const traits = genGoblynz(id);
-  const score = calcScore(traits);
-  const rank = calcRank(score);
-  const topPct = ((rank/4800)*100).toFixed(1);
-  const tier = score>1400?'legendary':score>900?'epic':score>600?'rare':score>380?'uncommon':'common';
-  document.getElementById('goblyn-id-display').textContent = '#'+String(id).padStart(4,'0');
-  document.getElementById('goblyn-name').textContent = 'goblynz #'+String(id).padStart(4,'0');
-  document.getElementById('rarity-score').textContent = score.toLocaleString();
-  document.getElementById('rarity-rank').textContent = '#'+rank.toLocaleString();
-  document.getElementById('rarity-percentile').textContent = topPct+'%';
-  document.getElementById('rarity-tier').innerHTML = '<span class="badge '+tier+'">'+tier+'</span>';
-  const bar = document.getElementById('rarity-bar');
-  bar.style.width = Math.min(100,Math.round((score/2000)*100))+'%';
-  bar.style.background = TC[tier];
-  const list = document.getElementById('traits-list');
-  list.innerHTML = '';
-  const entries = Object.entries(traits);
-  document.getElementById('trait-count').textContent = entries.length+' traits';
-  entries.forEach(([,t]) => {
-    const d = document.createElement('div'); d.className = 'trait-item';
-    const bw = Math.max(4,Math.round((1-t.pct/100)*100));
-    d.innerHTML = '<div class="trait-category">'+t.label+'</div><div class="trait-value">'+t.value+'</div><div class="trait-rarity-bar"><div class="trait-rarity-fill" style="width:'+bw+'%;background:'+TC[t.tier]+'"></div></div><div class="trait-pct"><span>'+t.pct.toFixed(1)+'% have this</span><span class="trait-badge '+t.tier+'">'+t.tier+'</span></div>';
+function analyzeToken(rawId) {
+  const id = parseInt(rawId);
+  if (!id||id<1||id>4800){alert('enter a token id between 1 and 4800');return}
+  const traits=genG(id),score=calcScore(traits),rank=calcRank(score);
+  const topPct=((rank/4800)*100).toFixed(1);
+  const tier=score>1400?'legendary':score>900?'epic':score>600?'rare':score>380?'uncommon':'common';
+  document.getElementById('g-id-display').textContent='#'+String(id).padStart(4,'0');
+  document.getElementById('g-name').textContent='goblynz #'+String(id).padStart(4,'0');
+  document.getElementById('g-score').textContent=score.toLocaleString();
+  document.getElementById('g-rank').textContent='#'+rank.toLocaleString();
+  document.getElementById('g-pct').textContent=topPct+'%';
+  document.getElementById('g-tier').innerHTML='<span class="badge '+tier+'">'+tier+'</span>';
+  const bar=document.getElementById('g-bar');
+  bar.style.width=Math.min(100,Math.round((score/2000)*100))+'%';
+  bar.style.background=TC[tier];
+  const list=document.getElementById('traits-list');list.innerHTML='';
+  const entries=Object.entries(traits);
+  document.getElementById('trait-count').textContent=entries.length+' traits';
+  entries.forEach(([,t])=>{
+    const d=document.createElement('div');d.className='trait-item';
+    const bw=Math.max(4,Math.round((1-t.pct/100)*100));
+    d.innerHTML='<div class="trait-category">'+t.label+'</div><div class="trait-value">'+t.value+'</div><div class="trait-bar"><div class="trait-bar-fill" style="width:'+bw+'%;background:'+TC[t.tier]+'"></div></div><div class="trait-pct"><span>'+t.pct.toFixed(1)+'% have this</span><span class="trait-badge '+t.tier+'">'+t.tier+'</span></div>';
     list.appendChild(d);
   });
-  document.getElementById('results-panel').style.display = 'grid';
+  document.getElementById('results-panel').style.display='grid';
   document.getElementById('results-panel').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function renderChart() {
-  const chart = document.getElementById('rarity-chart'); chart.innerHTML = '';
+function renderChart(){
+  const chart=document.getElementById('rarity-chart');chart.innerHTML='';
   [{c:TC.legendary,n:96},{c:TC.epic,n:240},{c:TC.rare,n:672},{c:TC.uncommon,n:1152},{c:TC.common,n:2640}].forEach(t=>{
-    const pct = Math.round((t.n/2640)*100);
-    const g = document.createElement('div'); g.className = 'chart-bar-group';
-    g.innerHTML = '<div class="chart-bar-label">'+t.n.toLocaleString()+'</div><div class="chart-bar-inner" style="height:'+pct+'%;background:'+t.c+';opacity:.75"></div>';
+    const pct=Math.round((t.n/2640)*100);
+    const g=document.createElement('div');g.className='chart-bar-group';
+    g.innerHTML='<div class="chart-bar-label">'+t.n+'</div><div class="chart-bar-inner" style="height:'+pct+'%;background:'+t.c+';opacity:.8"></div>';
     chart.appendChild(g);
   });
 }
 
-// ══════════════════════════════════════════════════
-//  APP INIT
-// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  // check session
-  const session = getSession();
-  if (session) {
+  // restore session
+  const sess = getSession();
+  if (sess) {
     const users = getUsers();
-    if (users[session]) {
-      currentUser = users[session];
+    if (users[sess]) {
+      ME = users[sess];
       document.getElementById('auth-overlay').style.display = 'none';
-      updateNavUser();
-      renderOracle();
+      updateNav();
     }
   }
 
-  // enter key on auth inputs
-  ['login-pass','reg-pass2'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', e => {
-      if (e.key === 'Enter') id.startsWith('login') ? doLogin() : doRegister();
-    });
-  });
+  // enter keys on auth
+  document.getElementById('j-pass2').addEventListener('keydown', e => { if(e.key==='Enter') doJoin() });
+  document.getElementById('i-pass').addEventListener('keydown', e => { if(e.key==='Enter') doSignIn() });
+
+  // check round transition
+  checkRoundTransition();
 
   // tabs
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabPanels = document.querySelectorAll('.tab-panel');
   const navLinks = document.querySelectorAll('.nav-link');
   function switchTab(id) {
-    tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
-    tabPanels.forEach(p => p.classList.toggle('active', p.id === id));
-    navLinks.forEach(l => l.classList.toggle('active-link', l.dataset.tab === id));
-    history.replaceState(null, '', '#' + id);
-    if (id === 'oracle' && currentUser) renderOracle();
+    tabBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+    tabPanels.forEach(p=>p.classList.toggle('active',p.id===id));
+    navLinks.forEach(l=>l.classList.toggle('active-link',l.dataset.tab===id));
+    history.replaceState(null,'','#'+id);
+    if(id==='oracle'&&ME) renderOracle();
   }
-  tabBtns.forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
-  navLinks.forEach(l => l.addEventListener('click', e => { e.preventDefault(); switchTab(l.dataset.tab) }));
-  if (location.hash === '#oracle') switchTab('oracle');
+  tabBtns.forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+  navLinks.forEach(l=>l.addEventListener('click',e=>{e.preventDefault();switchTab(l.dataset.tab)}));
+  if(location.hash==='#oracle') switchTab('oracle');
+  if(ME) renderOracle();
 
-  // rarity
+  // rarity init
   renderChart();
-  document.getElementById('lookup-btn').addEventListener('click', () => analyzeToken(document.getElementById('token-id-input').value));
-  document.getElementById('token-id-input').addEventListener('keydown', e => { if (e.key==='Enter') analyzeToken(e.target.value) });
-  document.getElementById('random-btn').addEventListener('click', () => {
-    const id = Math.floor(Math.random()*4800)+1;
-    document.getElementById('token-id-input').value = id;
-    analyzeToken(id);
-  });
-  document.getElementById('share-btn').addEventListener('click', () => {
-    const id = document.getElementById('goblyn-id-display').textContent;
-    const score = document.getElementById('rarity-score').textContent;
-    const rank = document.getElementById('rarity-rank').textContent;
+  document.getElementById('token-input').addEventListener('keydown', e=>{if(e.key==='Enter')analyzeToken(e.target.value)});
+  document.getElementById('share-btn').addEventListener('click',()=>{
+    const id=document.getElementById('g-id-display').textContent;
+    const score=document.getElementById('g-score').textContent;
+    const rank=document.getElementById('g-rank').textContent;
     navigator.clipboard.writeText('🔺 goblynz '+id+'\nrarity score: '+score+'\nrank: '+rank+'\n\ncheck yours → https://goblynz.xyz\n\n#goblynz #nft').then(()=>{
-      const btn = document.getElementById('share-btn'); const orig = btn.textContent;
-      btn.textContent = 'copied! ✓'; setTimeout(()=>btn.textContent=orig,2000);
+      const btn=document.getElementById('share-btn');const o=btn.textContent;btn.textContent='copied! ✓';setTimeout(()=>btn.textContent=o,2000);
     });
   });
 });
